@@ -1,0 +1,19 @@
+MICMAC
+
+Common Lisp implemention of Metropolis-Hastings by Gabor Melis.
+
+Although for now, Micmac has only a generic Metropolis-Hastings MCMC
+and Metropolis Coupled MCMC method and it's kind of trivial, I found
+it worthy of factoring out. Later more statistics related stuff may be
+added.
+
+It's under the MIT licence. See COPYING.
+
+For an example on how to use it see
+test/test-metropolis-hastings.lisp.
+
+* Tests
+
+Run the built in tests with:
+
+  (ASDF:OOS 'ASDF:TEST-OP '#:MICMAC)
