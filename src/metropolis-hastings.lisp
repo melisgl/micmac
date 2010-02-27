@@ -204,20 +204,27 @@ with MC3 acceptance probability.")
 
 ;;;; Enumerating chain
 
-(defun sum-seq (seq &key (start 0) (end (length seq)))
+(defun sum-seq (seq &key (key #'identity) (start 0) (end (length seq)))
+  "Return the sum of elements in the [START,END) subsequence of SEQ."
   (if (typep seq 'list)
       (loop repeat (- end start)
             for l = (nthcdr start seq) then (cdr l)
-            sum (car l))
+            sum (funcall key (car l)))
       (loop for i upfrom start below end
-            sum (aref seq i))))
+            sum (funcall key (aref seq i)))))
 
-(defun random-index (seq &key (start 0) (end (length seq))
-                     (sum (sum-seq seq :start start :end end)))
+(defun random-element (seq &key (key #'identity)
+                       (start 0) (end (length seq))
+                       (sum (sum-seq seq :key key :start start :end end)))
+  "Choose an element randomly from the [START,END) subsequence of SEQ
+with given probabilities. KEY returns the unormalized probability of
+an element, SUM is the sum of these unnormalized probalities contains
+unnormalized probabilties. Return the element chosen and its index."
   (let ((x (random (float sum 0d0))))
     (do* ((i start (1+ i))
-          (s (aref seq i) (+ s (aref seq i))))
-         ((or (<= x s) (>= i (1- end))) i))))
+          (e (elt seq i) (elt seq i))
+          (s (funcall key e) (+ s (funcall key e))))
+         ((or (<= x s) (>= i (1- end))) (values e i)))))
 
 (defclass enumerating-chain (mc-chain)
   ((p-jumps :reader p-jumps))
@@ -230,7 +237,7 @@ explicitly enumerates the probabilities of the distribution."))
     (setf (slot-value chain 'p-jumps) (make-array n-jumps))))
 
 (defmethod random-jump ((chain enumerating-chain))
-  (random-index (p-jumps chain) :sum 1d0))
+  (nth-value 1 (random-index (p-jumps chain) :sum 1d0)))
 
 
 ;;;; Tracing chain
