@@ -130,5 +130,3 @@
   (test-util)
   (test-plain-metropolis-hastings)
   (test-mc3))
-
-(export 'test-metropolis-hastings)

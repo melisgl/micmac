@@ -93,6 +93,4 @@
   (loop repeat 100 do (test-uct-random-walk 'random-walk-node))
   (loop repeat 100 do (test-uct-random-walk 'random-walk-node2)))
 
-(export 'test-uct)
-
 ;;(test-uct)
