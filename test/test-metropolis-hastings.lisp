@@ -4,11 +4,11 @@
   (assert (= 6 (sum-seq '(0 1 2 3 4 5) :start 1 :end 4)))
   (assert (= 6 (sum-seq #(0 1 2 3 4 5) :start 1 :end 4))))
 
-(defun test-random-index ()
-  (assert (= 0 (random-index #(1 0)))))
+(defun test-random-element ()
+  (assert (equal '(1 0) (multiple-value-list (random-element #(1 0))))))
 
 (defun test-util ()
-  (test-random-index)
+  (test-random-element)
   (test-sum-seq))
 
 

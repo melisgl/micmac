@@ -8,5 +8,6 @@
   :components ((:module "test"
                 :serial t
                 :components ((:file "test-metropolis-hastings")
+                             (:file "test-uct")
                              (:file "test"))))
   :depends-on (#:micmac))

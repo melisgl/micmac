@@ -30,3 +30,33 @@
            #:enumerating-chain
            #:tracing-chain)
   (:documentation "Metroplis-Hastings MCMC."))
+
+(cl:defpackage :micmac.uct
+  (:use :common-lisp)
+  (:export 
+   ;; Node
+   #:uct-node
+   #:depth
+   #:n-visits
+   #:edges
+   #:average-reward
+   ;; Edge
+   #:uct-edge
+   #:action
+   #:from-node
+   #:to-node
+   ;; Misc
+   #:visited-edges
+   #:unvisited-edges
+   #:edge-score
+   #:select-edge
+   ;; Oft-specialized generic functions
+   #:outcome->reward
+   #:update-uct-statistics
+   #:make-uct-node
+   #:state
+   #:list-actions
+   #:play-out
+   ;; Beef
+   #:uct)
+  (:documentation "UCT Monte Carlo tree search."))

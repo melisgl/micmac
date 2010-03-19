@@ -3,12 +3,13 @@
 (asdf:defsystem #:micmac
   :name "Micmac"
   :author "Gabor Melis"
-  :version "0.0.0"
+  :version "0.0.1"
   :licence "MIT"
   :components ((:module "src"
                 :serial t
                 :components ((:file "package")
-                             (:file "metropolis-hastings"))))
+                             (:file "metropolis-hastings")
+                             (:file "uct"))))
   :serial t)
 
 (defmethod asdf:perform ((o asdf:test-op)
