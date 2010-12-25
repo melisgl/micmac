@@ -237,7 +237,7 @@ explicitly enumerates the probabilities of the distribution."))
     (setf (slot-value chain 'p-jumps) (make-array n-jumps))))
 
 (defmethod random-jump ((chain enumerating-chain))
-  (nth-value 1 (random-index (p-jumps chain) :sum 1d0)))
+  (nth-value 1 (random-element (p-jumps chain) :sum 1d0)))
 
 
 ;;;; Tracing chain
