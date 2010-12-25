@@ -3,7 +3,7 @@
 (asdf:defsystem #:micmac
   :name "Micmac"
   :author "Gabor Melis"
-  :version "0.0.1"
+  :version "0.0.2"
   :licence "MIT"
   :components ((:module "src"
                 :serial t
