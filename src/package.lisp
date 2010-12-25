@@ -61,3 +61,9 @@
    ;; Beef
    #:uct)
   (:documentation "UCT Monte Carlo tree search."))
+
+(cl:defpackage :micmac.game-theory
+  (:use :common-lisp)
+  (:export
+   #:find-nash-equilibrium)
+  (:documentation "Game theory."))

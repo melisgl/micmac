@@ -9,7 +9,8 @@
                 :serial t
                 :components ((:file "package")
                              (:file "metropolis-hastings")
-                             (:file "uct"))))
+                             (:file "uct")
+                             (:file "game-theory"))))
   :serial t)
 
 (defmethod asdf:perform ((o asdf:test-op)

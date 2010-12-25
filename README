@@ -1,12 +1,14 @@
 MICMAC
 
-Common Lisp implementation of Metropolis-Hastings and UCT by Gabor
-Melis.
+Common Lisp implementation of various AI/statistics related things by
+Gabor Melis.
 
-Although for now, Micmac has only a generic UCT, Metropolis-Hastings
-MCMC and Metropolis Coupled MCMC method and it's kind of trivial, I
-found it worthy of factoring out. Later more statistics related stuff
-may be added.
+Micmac has:
+
+- UCT (a Monte Carlo tree search algorithm)
+- Nash equilibrium finder
+- Metropolis-Hastings MCMC
+- Metropolis Coupled MCMC
 
 It's under the MIT licence. See COPYING.
 

@@ -1,0 +1,18 @@
+(in-package :micmac.game-theory)
+
+(defun test-find-nash-equilibrium ()
+  (flet ((foo (payoff oddments-1* oddments-2* value*)
+           (multiple-value-bind (oddments-1 oddments-2 value)
+               (find-nash-equilibrium payoff)
+             (assert (equal (coerce oddments-1 'list)
+                            (coerce oddments-1* 'list)))
+             (assert (equal (coerce oddments-2 'list)
+                            (coerce oddments-2* 'list)))
+             (assert (< (abs (- value value*)) 0.0001)))))
+    (foo '((4 0 2) (6 7 1)) '(75 25) '(0 13 87) 1.765)
+    (foo '((1 -3 -1) (3 4 -2)) '(75 25) '(0 13 87) -1.235)
+    (foo '((2 3 1 4) (1 2 5 4 ) (2 3 4 1) (4 2 2 2))
+         '(30 13 23 34) '(30 39 15 16) 2.565)))
+
+(defun test-game-theory ()
+  (test-find-nash-equilibrium))
