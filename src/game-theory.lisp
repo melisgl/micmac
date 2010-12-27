@@ -39,16 +39,16 @@ equilibrium represented by the oddment vectors."
                     (list-to-2d-matrix payoff)
                     payoff)))
     (destructuring-bind (n-rows n-cols) (array-dimensions payoff)
-      (let* ((row-cum-payoff (make-array n-rows))
-             (col-cum-payoff (make-array n-cols))
+      (let* ((row-cum-payoff (make-array n-rows :initial-element 0))
+             (col-cum-payoff (make-array n-cols :initial-element 0))
              (colpos (make-array n-cols
                                  :initial-contents
                                  (loop for i below n-cols collect i)))
              (rowpos (make-array n-rows
                                  :initial-contents
                                  (loop for i below n-rows collect (- i))))
-             (colcnt (make-array n-cols))
-             (rowcnt (make-array n-rows))
+             (colcnt (make-array n-cols :initial-element 0))
+             (rowcnt (make-array n-rows :initial-element 0))
              (active 0))
         (dotimes (i n-iterations)
           (incf (aref rowcnt active))
