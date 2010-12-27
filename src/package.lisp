@@ -65,5 +65,6 @@
 (cl:defpackage :micmac.game-theory
   (:use :common-lisp)
   (:export
-   #:find-nash-equilibrium)
+   #:find-nash-equilibrium
+   #:alpha-beta)
   (:documentation "Game theory."))
