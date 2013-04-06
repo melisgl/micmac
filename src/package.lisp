@@ -1,6 +1,5 @@
 (cl:defpackage :micmac
-  (:use :common-lisp)
-  (:export))
+  (:use :common-lisp))
 
 (cl:defpackage :micmac.metropolis-hastings
   (:nicknames #:micmac.mh)

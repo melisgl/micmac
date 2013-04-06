@@ -1,5 +1,5 @@
 ;;;; UCT Monte Carlo tree search. This is what makes current Go
-;;;; programs tick. And Hex programs as well for that matter.
+;;;; programs tick. And Hex programs as well, for that matter.
 ;;;;
 ;;;; This is a cleanup and generalization of code originally created
 ;;;; in course of the Google AI Challenge 2010.
@@ -39,7 +39,8 @@ starting state or by customizing MAKE-UCT-NODE."))
     :documentation "The node this edge starts from.")
    (to-node
     :initform nil :accessor to-node
-    :documentation "The node this edge points to.")
+    :documentation "The node this edge points to if the edge has been
+visited or NIL.")
    (n-visits
     :initform 0 :accessor n-visits
     :documentation "The number of times this action was taken from the

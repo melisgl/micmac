@@ -1,13 +1,13 @@
 (in-package :micmac.uct)
 
 ;;;; Random walk starting from 0. Positive player (moves at even
-;;;; depths) wins if game ends in positive land, negative player if it
-;;;; ends in the negative else it's a draw.
+;;;; depths) wins if game ends in positive land, negative player wins
+;;;; if it ends in the negative, else it's a draw.
 
 (defclass random-walk-node (uct-node) ())
 (defclass random-walk-edge (uct-edge) ())
 
-;;; Either move to the left or the right.
+;;; Move either to the left or right.
 (defmethod list-edges ((node random-walk-node) state)
   (list (make-instance 'random-walk-edge :action -1 :from-node node)
         (make-instance 'random-walk-edge :action 1 :from-node node)))
