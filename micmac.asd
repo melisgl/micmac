@@ -17,7 +17,3 @@
                          (c (eql (asdf:find-system '#:micmac))))
   (asdf:oos 'asdf:load-op '#:micmac-test)
   (funcall (intern (symbol-name '#:test) (find-package '#:micmac))))
-
-(defmethod asdf:operation-done-p ((o asdf:test-op)
-                                  (c (eql (asdf:find-system '#:micmac))))
-  (values nil))
