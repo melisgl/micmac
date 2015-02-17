@@ -1,25 +1,51 @@
-;;;; Generic interface for the Metropolis-Hastings algorithm, also
-;;;; Metropolis Coupled MCMC.
-;;;;
-;;;; References:
-;;;;
-;;;; - http://en.wikipedia.org/wiki/Metropolis–Hastings_algorithm
-;;;;
-;;;; - Markov Chain Monte Carlo and Gibbs Sampling
-;;;;   Lecture Notes for EEB 581, version 26 April 2004 c B. Walsh 2004
-;;;;   http://web.mit.edu/~wingated/www/introductions/mcmc-gibbs-intro.pdf
-;;;;
-;;;; - Geyer, C.J. (1991) Markov chain Monte Carlo maximum likelihood
-
 (in-package :micmac.metropolis-hastings)
+
+(defsection @micmac-metropolis-hastings (:title "Metropolis Hastings")
+  "Generic interface for the Metropolis-Hastings algorithm, also
+  Metropolis Coupled MCMC.
+
+  References:
+
+  - http://en.wikipedia.org/wiki/Metropolis–Hastings_algorithm
+
+  - Markov Chain Monte Carlo and Gibbs Sampling
+    Lecture Notes for EEB 581, version 26 April 2004 c B. Walsh 2004
+    http://web.mit.edu/~wingated/www/introductions/mcmc-gibbs-intro.pdf
+
+  - Geyer, C.J. (1991) Markov chain Monte Carlo maximum likelihood
+
+  For now, the documentation is just a reference. See
+  `test/test-metropolis-hastings.lisp` for an example."
+  (mc-chain class)
+  (temperature (accessor mc-chain))
+  (state (reader mc-chain))
+  (jump-to-sample function)
+  (jump-to-sample* generic-function)
+  (prepare-jump-distribution generic-function)
+  (random-jump generic-function)
+  (log-probability-ratio generic-function)
+  (log-probability-ratio-to-jump-target generic-function)
+  (log-jump-probability-ratio generic-function)
+  (acceptance-probability generic-function)
+  (accept-jump generic-function)
+  (reject-jump generic-function)
+  (maybe-jump generic-function)
+  (jump generic-function)
+  (mc3-chain class)
+  (accept-swap-chain-states generic-function)
+  (reject-swap-chain-states generic-function)
+  (maybe-swap-chain-states generic-function)
+  (jump-between-chains generic-function)
+  (enumerating-chain class)
+  (tracing-chain class))
 
 (defclass mc-chain ()
   ((temperature
     :initform 1d0 :initarg :temperature :accessor temperature
     :documentation "The PROBABILITY-RATIO of samples is raised to the
-power of 1 / TEMPERATURE before calculating the acceptance
-probability. This effectively flattens the peaks if TEMPERATURE > 1
-which makes it easier for the chain to traverse deep valleys.")
+    power of 1 / TEMPERATURE before calculating the acceptance
+    probability. This effectively flattens the peaks if TEMPERATURE >
+    1 which makes it easier for the chain to traverse deep valleys.")
    (state
     :initarg :state :reader state
     :documentation "This is the current sample where the chain is.")
@@ -28,7 +54,7 @@ which makes it easier for the chain to traverse deep valleys.")
    (jump-distribution-prepared-p
     :initform nil :accessor jump-distribution-prepared-p))
   (:documentation "A simple markov chain for Metropolis Hastings. With
-temperature it is suitable for MC3."))
+  temperature it is suitable for MC3."))
 
 (defgeneric set-state (state chain)
   (:method (state chain)
@@ -40,18 +66,18 @@ temperature it is suitable for MC3."))
 
 (defun jump-to-sample (chain jump &key (result-sample (state chain)))
   "From the current state of CHAIN make JUMP (from the current
-distribution of CHAIN) and return the sample where we landed. Reuse
-RESULT-SAMPLE when possible. "
+  distribution of CHAIN) and return the sample where we landed. Reuse
+  RESULT-SAMPLE when possible. "
   (jump-to-sample* chain jump result-sample))
 
 (defgeneric jump-to-sample* (chain jump result-sample)
   (:documentation "This function is called by JUMP-TO-SAMPLE. It is
-where JUMP-TO-SAMPLE behaviour shall be customized."))
+  where JUMP-TO-SAMPLE behaviour shall be customized."))
 
 (defgeneric prepare-jump-distribution (chain)
   (:documentation "Prepare for sampling from the F(X) = Q(SAMPLE->X)
-distribution. Called by RANDOM-JUMP. The around method ensures that
-nothing is done unless there was a state change.")
+  distribution. Called by RANDOM-JUMP. The around method ensures that
+  nothing is done unless there was a state change.")
   (:method :around (chain)
    (unless (jump-distribution-prepared-p chain)
      (call-next-method)
@@ -59,28 +85,28 @@ nothing is done unless there was a state change.")
 
 (defgeneric random-jump (chain)
   (:documentation "Sample a jump from the current distribution of
-jumps that was computed by PREPARE-JUMP-DISTRIBUTION.")
+  jumps that was computed by PREPARE-JUMP-DISTRIBUTION.")
   (:method :before (chain)
    (prepare-jump-distribution chain)))
 
 (defgeneric log-probability-ratio (chain sample1 sample2)
   (:documentation "Return P(SAMPLE1)/P(SAMPLE2). It's in the log
-domain to avoid overflows and the ratio part is because that it may
-allow computational shortcuts as opposed to calculating unnormalized
-probabilities separately."))
+  domain to avoid overflows and the ratio part is because that it may
+  allow computational shortcuts as opposed to calculating unnormalized
+  probabilities separately."))
 
 (defgeneric log-probability-ratio-to-jump-target (chain jump target)
   (:documentation "Return P(TARGET)/P(STATE) where JUMP is from the
-current state of CHAIN to TARGET sample. This can be specialized for
-speed. The default implementation just falls back on
-LOG-PROBABILITY-RATIO.")
+  current state of CHAIN to TARGET sample. This can be specialized for
+  speed. The default implementation just falls back on
+  LOG-PROBABILITY-RATIO.")
   (:method (chain jump target)
     (log-probability-ratio chain target (state chain))))
 
 (defgeneric log-jump-probability-ratio (chain jump target)
   (:documentation "Return Q(TARGET->STATE) / Q(STATE->TARGET) where Q
-is the jump distribution and JUMP is from the current STATE of CHAIN
-to TARGET sample."))
+  is the jump distribution and JUMP is from the current STATE of CHAIN
+  to TARGET sample."))
 
 ;;; Like EXP, but avoid overflows.
 (defun log->acceptance-probability (x)
@@ -90,7 +116,7 @@ to TARGET sample."))
 
 (defgeneric acceptance-probability (chain jump candidate)
   (:documentation "Calculate the acceptance probability of CANDIDATE
-to which JUMP leads from the current STATE of CHAIN.")
+  to which JUMP leads from the current STATE of CHAIN.")
   (:method (chain jump candidate)
     (log->acceptance-probability
      (+ (/ (log-probability-ratio-to-jump-target chain jump candidate)
@@ -109,12 +135,12 @@ to which JUMP leads from the current STATE of CHAIN.")
 
 (defgeneric reject-jump (chain jump candidate)
   (:documentation "Called when CHAIN rejects JUMP to CANDIDATE. It
-does nothing by default, it's just a convenience for debugging.")
+  does nothing by default, it's just a convenience for debugging.")
   (:method (chain jump candidate)))
 
 (defgeneric maybe-jump (chain jump candidate acceptance-probability)
   (:documentation "Randomly accept or reject JUMP to CANDIDATE from
-the current state of CHAIN with ACCEPTANCE-PROBABILITY.")
+  the current state of CHAIN with ACCEPTANCE-PROBABILITY.")
   (:method (chain jump candidate acceptance-probability)
     (cond ((< (random 1d0) acceptance-probability)
            (accept-jump chain jump candidate)
@@ -125,7 +151,7 @@ the current state of CHAIN with ACCEPTANCE-PROBABILITY.")
 
 (defgeneric jump (chain)
   (:documentation "Take a step on the markov chain. Return a boolean
-indicating whether the proposed jump was accepted.")
+  indicating whether the proposed jump was accepted.")
   (:method (chain)
     (with-accessors ((candidate candidate)) chain
       (let ((jump (random-jump chain)))
@@ -142,10 +168,11 @@ indicating whether the proposed jump was accepted.")
   ((hot-chains
     :type list :initform () :initarg :hot-chains :reader hot-chains))
   (:documentation "High probability island separated by low valley
-make the chain poorly mixing. MC3-CHAIN has a number of HOT-CHAINS
-that have state probabilities similar to that of the main chain but
-less jagged. Often it suffices to set the temperatures of the
-HOT-CHAINS higher use the very same base probability distribution."))
+  make the chain poorly mixing. MC3-CHAIN has a number of HOT-CHAINS
+  that have state probabilities similar to that of the main chain but
+  less jagged. Often it suffices to set the temperatures of the
+  HOT-CHAINS higher use the very same base probability
+  distribution."))
 
 (defgeneric accept-swap-chain-states (mc3 chain1 chain2)
   (:documentation "Swap the states of CHAIN1 and CHAIN2 of MC3.")
@@ -154,8 +181,8 @@ HOT-CHAINS higher use the very same base probability distribution."))
 
 (defgeneric reject-swap-chain-states (mc3 chain1 chain2)
   (:documentation "Called when the swap of states of CHAIN1 and CHAIN2
-is rejected. It does nothing by default, it's just a convenience for
-debugging.")
+  is rejected. It does nothing by default, it's just a convenience for
+  debugging.")
   (:method (mc3 chain1 chain2)))
 
 (defun random-until-different (limit tabu &key (test #'eql))
@@ -165,7 +192,7 @@ debugging.")
 
 (defgeneric maybe-swap-chain-states (mc3 chain1 chain2 acceptance-probability)
   (:documentation "Swap of states of CHAIN1 and CHAIN2 of MC3 with
-ACCEPTANCE-PROBABILITY.")
+  ACCEPTANCE-PROBABILITY.")
   (:method (mc3 chain1 chain2 acceptance-probability)
     (cond ((< (random 1d0) acceptance-probability)
            (accept-swap-chain-states mc3 chain1 chain2)
@@ -176,7 +203,7 @@ ACCEPTANCE-PROBABILITY.")
 
 (defgeneric jump-between-chains (mc3)
   (:documentation "Choose two chains randomly and swap their states
-with MC3 acceptance probability.")
+  with MC3 acceptance probability.")
   (:method (mc3)
     (let* ((chains (cons mc3 (hot-chains mc3)))
            (n (length chains)))
@@ -217,9 +244,10 @@ with MC3 acceptance probability.")
                        (start 0) (end (length seq))
                        (sum (sum-seq seq :key key :start start :end end)))
   "Choose an element randomly from the [START,END) subsequence of SEQ
-with given probabilities. KEY returns the unormalized probability of
-an element, SUM is the sum of these unnormalized probalities contains
-unnormalized probabilties. Return the element chosen and its index."
+  with given probabilities. KEY returns the unormalized probability of
+  an element, SUM is the sum of these unnormalized probalities
+  contains unnormalized probabilties. Return the element chosen and
+  its index."
   (let ((x (random (float sum 0d0))))
     (do* ((i start (1+ i))
           (e (elt seq i) (elt seq i))
@@ -228,8 +256,8 @@ unnormalized probabilties. Return the element chosen and its index."
 
 (defclass enumerating-chain (mc-chain)
   ((p-jumps :reader p-jumps))
-  (:documentation "A simple abstract chain subclass that
-explicitly enumerates the probabilities of the distribution."))
+  (:documentation "A simple abstract chain subclass that explicitly
+  enumerates the probabilities of the distribution."))
 
 (defmethod initialize-instance :after ((chain enumerating-chain)
                                        &key n-jumps &allow-other-keys)
@@ -244,8 +272,8 @@ explicitly enumerates the probabilities of the distribution."))
 
 (defclass tracing-chain () 
   ()
-  (:documentation "Mix this in with your chain to have it print
-trace of acceptances/rejections."))
+  (:documentation "Mix this in with your chain to have it print trace
+  of acceptances/rejections."))
 
 (defmethod maybe-jump ((chain tracing-chain) jump candidate
                        acceptance-probability)

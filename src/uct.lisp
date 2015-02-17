@@ -1,10 +1,32 @@
-;;;; UCT Monte Carlo tree search. This is what makes current Go
-;;;; programs tick. And Hex programs as well, for that matter.
-;;;;
-;;;; This is a cleanup and generalization of code originally created
-;;;; in course of the Google AI Challenge 2010.
-
 (in-package :micmac.uct)
+
+(defsection @micmac-uct (:title "UCT")
+  "UCT Monte Carlo tree search. This is what makes current Go programs
+  tick. And Hex programs as well, for that matter. This is a cleanup
+  and generalization of code originally created in course of the
+  Google AI Challenge 2010.
+
+  For now, the documentation is just a reference. See
+  `test/test-uct.lisp` for an example."
+  (uct-node class)
+  (depth (reader uct-node))
+  (edges (accessor uct-node))
+  (average-reward (accessor uct-node))
+  (uct-edge class)
+  (action (reader uct-edge))
+  (from-node (accessor uct-edge))
+  (to-node (accessor uct-edge))
+  (visited-edges function)
+  (unvisited-edges function)
+  (edge-score generic-function)
+  (select-edge generic-function)
+  (outcome->reward generic-function)
+  (update-uct-statistics generic-function)
+  (make-uct-node generic-function)
+  (state generic-function)
+  (list-edges generic-function)
+  (play-out generic-function)
+  (uct function))
 
 (defclass uct-node ()
   ((depth :initform 0 :initarg :depth :reader depth)
@@ -15,11 +37,11 @@
    (average-reward
     :initform 0 :initarg :average-reward :accessor average-reward
     :documentation "Average reward over random playouts started from
-below this node. See UPDATE-UCT-STATISTICS and REWARD."))
+    below this node. See UPDATE-UCT-STATISTICS and REWARD."))
   (:documentation "A node in the UCT tree. Roughly translates to a
-state in the search space. Note that the state itself is not stored
-explicity, but it can be recovered by `replaying' the actions from the
-starting state or by customizing MAKE-UCT-NODE."))
+  state in the search space. Note that the state itself is not stored
+  explicity, but it can be recovered by `replaying' the actions from
+  the starting state or by customizing MAKE-UCT-NODE."))
 
 (defmethod print-object ((node uct-node) stream)
   (pprint-logical-block (stream ())
@@ -40,15 +62,15 @@ starting state or by customizing MAKE-UCT-NODE."))
    (to-node
     :initform nil :accessor to-node
     :documentation "The node this edge points to if the edge has been
-visited or NIL.")
+    visited or NIL.")
    (n-visits
     :initform 0 :accessor n-visits
     :documentation "The number of times this action was taken from the
-parent state."))
+    parent state."))
   (:documentation "An edge in the UCT tree. Represents an action taken
-from a state. The value of an action is the value of its target state
-which is not quite as generic as it could be; feel free to specialize
-AVERAGE-REWARD for the edges if that's not the case."))
+  from a state. The value of an action is the value of its target
+  state which is not quite as generic as it could be; feel free to
+  specialize AVERAGE-REWARD for the edges if that's not the case."))
 
 (defmethod print-object ((edge uct-edge) stream)
   (pprint-logical-block (stream ())
@@ -88,12 +110,12 @@ AVERAGE-REWARD for the edges if that's not the case."))
 
 (defgeneric select-edge (node exploration-bias)
   (:documentation "Choose an action to take from a state, in other
-words an edge to follow from NODE in the tree. The default
-implementation chooses randomly from the yet unvisited edges or if
-there is none moves down the edge with the maximum EDGE-SCORE. If you
-are thinking of customizing this, for example to make it choose the
-minimum at odd depths, the you may want to consider specializing
-REWARD or UPDATE-UCT-STATISTICS instead.")
+  words an edge to follow from NODE in the tree. The default
+  implementation chooses randomly from the yet unvisited edges or if
+  there is none moves down the edge with the maximum EDGE-SCORE. If
+  you are thinking of customizing this, for example to make it choose
+  the minimum at odd depths, the you may want to consider specializing
+  REWARD or UPDATE-UCT-STATISTICS instead.")
   (:method ((node uct-node) exploration-bias)
     (let ((unvisited-edges (unvisited-edges node)))
       (if unvisited-edges
@@ -104,17 +126,18 @@ REWARD or UPDATE-UCT-STATISTICS instead.")
 
 (defgeneric outcome->reward (node outcome)
   (:documentation "Compute the reward for a node in the tree from
-OUTCOME that is the result of a playout. This is called by the default
-implementation of UPDATE-UCT-STATISTICS. This is where one typically
-negates depending on the parity of DEPTH in two player games.")
+  OUTCOME that is the result of a playout. This is called by the
+  default implementation of UPDATE-UCT-STATISTICS. This is where one
+  typically negates depending on the parity of DEPTH in two player
+  games.")
   (:method ((node uct-node) outcome)
     outcome))
 
 (defgeneric update-uct-statistics (root path outcome)
   (:documentation "Increment the number of visits and update the
-average reward in nodes and edges of PATH. By default, edges simply
-get their visit counter incremented while nodes also get an update to
-AVERAGE-REWARD based on what OUTCOME->REWARD returns.")
+  average reward in nodes and edges of PATH. By default, edges simply
+  get their visit counter incremented while nodes also get an update
+  to AVERAGE-REWARD based on what OUTCOME->REWARD returns.")
   (:method ((node uct-node) path outcome)
     (loop for x on path by #'cddr do
           (let ((node (first x))
@@ -128,41 +151,43 @@ AVERAGE-REWARD based on what OUTCOME->REWARD returns.")
 
 (defgeneric make-uct-node (parent edge parent-state)
   (:documentation "Create a node representing the state of that EDGE
-leads to from PARENT. Specialize this if you want to keep track of the
-state which is not done by default as it can be expensive, especially
-in light of TAKE-ACTION mutating it. The default implementation simply
-creates an instance of the class of PARENT so that one can start from
-a subclass of UCT-NODE and be sure that that class is going to be used
-for nodes below it.")
+  leads to from PARENT. Specialize this if you want to keep track of
+  the state which is not done by default as it can be expensive,
+  especially in light of TAKE-ACTION mutating it. The default
+  implementation simply creates an instance of the class of PARENT so
+  that one can start from a subclass of UCT-NODE and be sure that that
+  class is going to be used for nodes below it.")
   (:method ((parent uct-node) edge state)
     (make-instance (class-of parent)
                    :depth (1+ (depth parent)))))
 
 (defgeneric state (node parent edge parent-state)
   (:documentation "Return the state that corresponds to NODE. This is
-not a straightforward accessor unless NODE is customized to store it.
-The rest of the parameters are provided so that one can reconstruct
-the state by taking the action of EDGE in the PARENT-STATE of PARENT.
-It's okay to destroy PARENT-STATE in the process as long as it's not
-stored elsewhere. This function must be customized."))
+  not a straightforward accessor unless NODE is customized to store
+  it. The rest of the parameters are provided so that one can
+  reconstruct the state by taking the action of EDGE in the
+  PARENT-STATE of PARENT. It's okay to destroy PARENT-STATE in the
+  process as long as it's not stored elsewhere. This function must be
+  customized."))
 
 (defgeneric list-edges (node state)
   (:documentation "Return a list of edges representing the possible
-actions from NODE with STATE. This function must be customized."))
+  actions from NODE with STATE. This function must be customized."))
 
 (defgeneric play-out (node state reverse-path)
   (:documentation "Play a random game from NODE with STATE and return
-the outcome that's fed into UPDATE-UCT-STATISTICS. The way the random
-game is played is referred to as `default policy' and that's what
-makes or breaks UCT search. This function must be customized."))
+  the outcome that's fed into UPDATE-UCT-STATISTICS. The way the
+  random game is played is referred to as `default policy' and that's
+  what makes or breaks UCT search. This function must be
+  customized."))
 
 (defun uct (&key root fresh-root-state exploration-bias max-n-playouts)
   "Starting from the ROOT node search the tree expanding it one node
-for each playout. Finally return the mutated ROOT. ROOT may be the
-root node of any tree, need not be a single node with no edges.
-FRESH-ROOT-STATE is a function that returns a fresh state
-corresponding to ROOT. This state will be destroyed unless special
-care is taken in STATE."
+  for each playout. Finally return the mutated ROOT. ROOT may be the
+  root node of any tree, need not be a single node with no edges.
+  FRESH-ROOT-STATE is a function that returns a fresh state
+  corresponding to ROOT. This state will be destroyed unless special
+  care is taken in STATE."
   (loop for i below max-n-playouts do
         (let ((state (funcall fresh-root-state))
               (path (list root)))

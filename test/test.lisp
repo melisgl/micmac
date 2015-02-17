@@ -3,4 +3,5 @@
 (defun test ()
   (micmac.metropolis-hastings::test-metropolis-hastings)
   (micmac.uct::test-uct)
-  (micmac.game-theory::test-game-theory))
+  (micmac.game-theory::test-game-theory)
+  (test-alpha-beta))
