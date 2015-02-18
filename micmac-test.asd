@@ -7,9 +7,10 @@
   :licence "MIT"
   :components ((:module "test"
                 :serial t
-                :components ((:file "test-metropolis-hastings")
+                :components ((:file "test-alpha-beta")
+                             (:file "test-beam-search")
                              (:file "test-uct")
+                             (:file "test-metropolis-hastings")
                              (:file "test-game-theory")
-                             (:file "test-alpha-beta")
                              (:file "test"))))
   :depends-on (#:micmac))

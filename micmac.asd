@@ -13,8 +13,8 @@
   :components ((:module "src"
                 :serial t
                 :components ((:file "package")
-                             (:file "graph-search")
                              (:file "uct")
+                             (:file "graph-search")
                              (:file "metropolis-hastings")
                              (:file "game-theory")
                              (:file "micmac"))))

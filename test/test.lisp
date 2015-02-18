@@ -1,7 +1,9 @@
 (in-package :micmac)
 
 (defun test ()
-  (micmac.metropolis-hastings::test-metropolis-hastings)
+  (test-alpha-beta)
+  (test-beam-search)
+  (test-parallel-beam-search)
   (micmac.uct::test-uct)
-  (micmac.game-theory::test-game-theory)
-  (test-alpha-beta))
+  (micmac.metropolis-hastings::test-metropolis-hastings)
+  (micmac.game-theory::test-game-theory))

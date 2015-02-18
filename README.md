@@ -96,6 +96,59 @@ for the latest version.
     
     See `test/test-alpha-beta.lisp` for an example.
 
+<a name='x-28MICMAC-3ABEAM-SEARCH-20FUNCTION-29'></a>
+
+- [function] **BEAM-SEARCH** *START-NODES &KEY MAX-DEPTH (N-SOLUTIONS 1) (BEAM-WIDTH (LENGTH START-NODES)) EXPAND-NODE-FN EXPAND-BEAM-FN SCORE-FN UPPER-BOUND-FN SOLUTIONP-FN (FINISHEDP-FN SOLUTIONP-FN)*
+
+    In a graph, search for nodes that with the best scores with [beam
+    search](http://en.wikipedia.org/wiki/Beam_search). That is, starting
+    from `START-NODES` perform a breadth-first search but at each depth
+    only keep `BEAM-WIDTH` number of nodes with the best scores. Keep the
+    best `N-SOLUTIONS` (at most) complete solutions. Discard nodes known
+    to be unable to get into the best `N-SOLUTIONS` (due to
+    `UPPER-BOUND-FN`). Finally, return the solutions and the active
+    nodes (the *beam*) as adjustable arrays sorted by score in
+    descending order.
+    
+    `START-NODES` (a sequence of elements of arbitrary type). `SCORE-FN`,
+    `UPPER-BOUND-FN`, `SOLUTIONP-FN`, `FINISHEDP-FN` are all functions of one
+    argument: the node. `SOLUTIONP-FN` checks whether a node represents a
+    complete solution (i.e. some goal is reached). `SCORE-FN` returns a
+    real number that's to be maximized, it's only called for node for
+    which `SOLUTIONP-FN` returned true. `UPPER-BOUND-FN` (if not `NIL`)
+    returns a real number that equal or greater than the score of all
+    solutions reachable from that node. `FINISHEDP-FN` returns true iff
+    there is nowhere to go from the node.
+    
+    `EXPAND-NODE-FN` is also a function of a single node argument. It
+    returns a sequence of nodes to 'one step away' from its argument
+    node. `EXPAND-BEAM-FN` is similar, but it takes a vector of nodes and
+    returns all nodes one step away from any of them. It's enough
+    provide either `EXPAND-NODE-FN` or `EXPAND-BEAM-FN`. The purpose of
+    `EXPAND-BEAM-FN`. is to allow more efficient, batch-like operations.
+    
+    See `test/test-beam-search.lisp` for an example.
+
+<a name='x-28MICMAC-3APARALLEL-BEAM-SEARCH-20FUNCTION-29'></a>
+
+- [function] **PARALLEL-BEAM-SEARCH** *START-NODE-SEQS &KEY MAX-DEPTH (N-SOLUTIONS 1) BEAM-WIDTH EXPAND-NODE-FN EXPAND-BEAMS-FN SCORE-FN UPPER-BOUND-FN SOLUTIONP-FN (FINISHEDP-FN SOLUTIONP-FN)*
+
+    This is very much like [`BEAM-SEARCH`][46a1] except it solves a number of
+    instances of the same search problem starting from different sets of
+    nodes. The sole purpose of [`PARALLEL-BEAM-SEARCH`][5d68] is to amortize the
+    cost `EXPAND-BEAM-FN` if possible.
+    
+    `EXPAND-BEAMS-FN` is called with sequence of beams (i.e. it's a
+    sequence of sequence of nodes) and it must return another sequence
+    of sequences of nodes. Each element of the returned sequence is the
+    reachable nodes of the nodes in the corresponding element of its
+    argument sequence.
+    
+    [`PARALLEL-BEAM-SEARCH`][5d68] returns a sequence of solutions sequences, and
+    a sequence of active node sequences.
+    
+    See `test/test-beam-search.lisp` for an example.
+
 <a name='x-28MICMAC-2EUCT-3A-40MICMAC-UCT-20MGL-PAX-3ASECTION-29'></a>
 
 ### 3.1 UCT
@@ -470,7 +523,9 @@ For now, the documentation is just a reference. See
   [39e2]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ASTATE-20-28MGL-PAX-3AREADER-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29 "(MICMAC.METROPOLIS-HASTINGS:STATE (MGL-PAX:READER MICMAC.METROPOLIS-HASTINGS:MC-CHAIN))"
   [4441]: #x-28MICMAC-2EUCT-3AOUTCOME--3EREWARD-20GENERIC-FUNCTION-29 "(MICMAC.UCT:OUTCOME->REWARD GENERIC-FUNCTION)"
   [449f]: #x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29 "(MICMAC:@MICMAC-INTRODUCTION MGL-PAX:SECTION)"
+  [46a1]: #x-28MICMAC-3ABEAM-SEARCH-20FUNCTION-29 "(MICMAC:BEAM-SEARCH FUNCTION)"
   [499c]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ARANDOM-JUMP-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:RANDOM-JUMP GENERIC-FUNCTION)"
+  [5d68]: #x-28MICMAC-3APARALLEL-BEAM-SEARCH-20FUNCTION-29 "(MICMAC:PARALLEL-BEAM-SEARCH FUNCTION)"
   [670f]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3A-40MICMAC-METROPOLIS-HASTINGS-20MGL-PAX-3ASECTION-29 "(MICMAC.METROPOLIS-HASTINGS:@MICMAC-METROPOLIS-HASTINGS MGL-PAX:SECTION)"
   [724d]: #x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29 "(MICMAC.GAME-THEORY:@MICMAC-GAME-THEORY MGL-PAX:SECTION)"
   [8adf]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:LOG-PROBABILITY-RATIO GENERIC-FUNCTION)"
