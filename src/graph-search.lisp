@@ -187,9 +187,9 @@
                 (make-array beam-width :adjustable t :fill-pointer 0))))
     (flet ((has-a-chance-p (node solutions)
              (or (null upper-bound-fn)
-                 (or (< (length solutions) n-solutions)
-                     (< (funcall score-fn (aref solutions (1- n-solutions)))
-                        (funcall upper-bound-fn node))))))
+                 (< (length solutions) n-solutions)
+                 (< (funcall score-fn (aref solutions (1- n-solutions)))
+                    (funcall upper-bound-fn node)))))
       (loop
         for depth upfrom 0
         do (when (and max-depth (<= max-depth depth))
