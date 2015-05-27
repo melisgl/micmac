@@ -2,9 +2,12 @@
 
 (asdf:defsystem #:micmac-test
   :name "Tests for Micmac"
-  :author "Gabor Melis"
   :version "0.0.0"
+  :author "Gábor Melis"
+  :mailto "mega@retes.hu"
+  :homepage "http://quotenil.com"
   :licence "MIT"
+  :description "Test system for Micmac."
   :components ((:module "test"
                 :serial t
                 :components ((:file "test-alpha-beta")
