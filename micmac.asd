@@ -17,7 +17,8 @@
                              (:file "graph-search")
                              (:file "metropolis-hastings")
                              (:file "game-theory")
-                             (:file "micmac"))))
+                             (:file "micmac")
+                             (:file "doc"))))
   :serial t
   :depends-on (#:mgl-pax))
 

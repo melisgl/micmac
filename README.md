@@ -1,4 +1,4 @@
-<a name='x-28MICMAC-3A-40MICMAC-MANUAL-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-3A-40MICMAC-MANUAL-20MGL-PAX-3ASECTION-29'></a>
 
 # Micmac Manual
 
@@ -14,7 +14,7 @@
 - [5 Game Theory][724d]
 
 ###### \[in package MICMAC\]
-<a name='x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29'></a>
+<a id='x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29'></a>
 
 ## 1 micmac ASDF System Details
 
@@ -27,11 +27,11 @@
 - Mailto: [mega@retes.hu](mailto:mega@retes.hu)
 - Homepage: [http://quotenil.com](http://quotenil.com)
 
-<a name='x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29'></a>
 
 ## 2 Introduction
 
-<a name='x-28MICMAC-3A-40MICMAC-OVERVIEW-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-3A-40MICMAC-OVERVIEW-20MGL-PAX-3ASECTION-29'></a>
 
 ### 2.1 Overview
 
@@ -39,7 +39,7 @@ MICMAC is a Common Lisp library by [Gábor
 Melis](http://quotenil.com) focusing on [graph
 search](http://en.wikipedia.org/wiki/Graph_traversal) algorithms.
 
-<a name='x-28MICMAC-3A-40MICMAC-LINKS-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-3A-40MICMAC-LINKS-20MGL-PAX-3ASECTION-29'></a>
 
 ### 2.2 Links
 
@@ -48,11 +48,11 @@ repository](https://github.com/melisgl/micmac) and the [HTML
 documentation](http://melisgl.github.io/mgl-pax-world/micmac-manual.html)
 for the latest version.
 
-<a name='x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29'></a>
 
 ## 3 Graph Search
 
-<a name='x-28MICMAC-3AALPHA-BETA-20FUNCTION-29'></a>
+<a id='x-28MICMAC-3AALPHA-BETA-20FUNCTION-29'></a>
 
 - [function] **ALPHA-BETA** *STATE &KEY (DEPTH 0) ALPHA BETA CALL-WITH-ACTION MAYBE-EVALUATE-STATE LIST-ACTIONS RECORD-BEST*
 
@@ -96,7 +96,7 @@ for the latest version.
     
     See `test/test-alpha-beta.lisp` for an example.
 
-<a name='x-28MICMAC-3ABEAM-SEARCH-20FUNCTION-29'></a>
+<a id='x-28MICMAC-3ABEAM-SEARCH-20FUNCTION-29'></a>
 
 - [function] **BEAM-SEARCH** *START-NODES &KEY MAX-DEPTH (N-SOLUTIONS 1) (BEAM-WIDTH (LENGTH START-NODES)) EXPAND-NODE-FN EXPAND-BEAM-FN SCORE-FN UPPER-BOUND-FN SOLUTIONP-FN (FINISHEDP-FN SOLUTIONP-FN)*
 
@@ -129,7 +129,7 @@ for the latest version.
     
     See `test/test-beam-search.lisp` for an example.
 
-<a name='x-28MICMAC-3APARALLEL-BEAM-SEARCH-20FUNCTION-29'></a>
+<a id='x-28MICMAC-3APARALLEL-BEAM-SEARCH-20FUNCTION-29'></a>
 
 - [function] **PARALLEL-BEAM-SEARCH** *START-NODE-SEQS &KEY MAX-DEPTH (N-SOLUTIONS 1) BEAM-WIDTH EXPAND-NODE-FN EXPAND-BEAMS-FN SCORE-FN UPPER-BOUND-FN SOLUTIONP-FN (FINISHEDP-FN SOLUTIONP-FN)*
 
@@ -149,7 +149,7 @@ for the latest version.
     
     See `test/test-beam-search.lisp` for an example.
 
-<a name='x-28MICMAC-2EUCT-3A-40MICMAC-UCT-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3A-40MICMAC-UCT-20MGL-PAX-3ASECTION-29'></a>
 
 ### 3.1 UCT
 
@@ -162,7 +162,7 @@ Google AI Challenge 2010.
 For now, the documentation is just a reference. See
 `test/test-uct.lisp` for an example.
 
-<a name='x-28MICMAC-2EUCT-3AUCT-NODE-20CLASS-29'></a>
+<a id='x-28MICMAC-2EUCT-3AUCT-NODE-20CLASS-29'></a>
 
 - [class] **UCT-NODE**
 
@@ -171,24 +171,24 @@ For now, the documentation is just a reference. See
     explicity, but it can be recovered by \`replaying' the actions from
     the starting state or by customizing [`MAKE-UCT-NODE`][f36e].
 
-<a name='x-28MICMAC-2EUCT-3ADEPTH-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-NODE-29-29'></a>
+<a id='x-28MICMAC-2EUCT-3ADEPTH-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-NODE-29-29'></a>
 
 - [reader] **DEPTH** *UCT-NODE* *(:DEPTH = 0)*
 
-<a name='x-28MICMAC-2EUCT-3AEDGES-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29'></a>
+<a id='x-28MICMAC-2EUCT-3AEDGES-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29'></a>
 
 - [accessor] **EDGES** *UCT-NODE*
 
     Outgoing edges.
 
-<a name='x-28MICMAC-2EUCT-3AAVERAGE-REWARD-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29'></a>
+<a id='x-28MICMAC-2EUCT-3AAVERAGE-REWARD-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29'></a>
 
 - [accessor] **AVERAGE-REWARD** *UCT-NODE* *(:AVERAGE-REWARD = 0)*
 
     Average reward over random playouts started from
     below this node. See [`UPDATE-UCT-STATISTICS`][8e5c] and REWARD.
 
-<a name='x-28MICMAC-2EUCT-3AUCT-EDGE-20CLASS-29'></a>
+<a id='x-28MICMAC-2EUCT-3AUCT-EDGE-20CLASS-29'></a>
 
 - [class] **UCT-EDGE**
 
@@ -197,38 +197,38 @@ For now, the documentation is just a reference. See
     state which is not quite as generic as it could be; feel free to
     specialize [`AVERAGE-REWARD`][1acd] for the edges if that's not the case.
 
-<a name='x-28MICMAC-2EUCT-3AACTION-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-EDGE-29-29'></a>
+<a id='x-28MICMAC-2EUCT-3AACTION-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-EDGE-29-29'></a>
 
 - [reader] **ACTION** *UCT-EDGE* *(:ACTION)*
 
     The action represented by the edge.
 
-<a name='x-28MICMAC-2EUCT-3AFROM-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29'></a>
+<a id='x-28MICMAC-2EUCT-3AFROM-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29'></a>
 
 - [accessor] **FROM-NODE** *UCT-EDGE* *(:FROM-NODE)*
 
     The node this edge starts from.
 
-<a name='x-28MICMAC-2EUCT-3ATO-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29'></a>
+<a id='x-28MICMAC-2EUCT-3ATO-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29'></a>
 
 - [accessor] **TO-NODE** *UCT-EDGE* *(= NIL)*
 
     The node this edge points to if the edge has been
     visited or `NIL`.
 
-<a name='x-28MICMAC-2EUCT-3AVISITED-EDGES-20FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3AVISITED-EDGES-20FUNCTION-29'></a>
 
 - [function] **VISITED-EDGES** *NODE*
 
-<a name='x-28MICMAC-2EUCT-3AUNVISITED-EDGES-20FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3AUNVISITED-EDGES-20FUNCTION-29'></a>
 
 - [function] **UNVISITED-EDGES** *NODE*
 
-<a name='x-28MICMAC-2EUCT-3AEDGE-SCORE-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3AEDGE-SCORE-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **EDGE-SCORE** *NODE EDGE EXPLORATION-BIAS*
 
-<a name='x-28MICMAC-2EUCT-3ASELECT-EDGE-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3ASELECT-EDGE-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **SELECT-EDGE** *NODE EXPLORATION-BIAS*
 
@@ -240,7 +240,7 @@ For now, the documentation is just a reference. See
     the minimum at odd depths, the you may want to consider specializing
     REWARD or [`UPDATE-UCT-STATISTICS`][8e5c] instead.
 
-<a name='x-28MICMAC-2EUCT-3AOUTCOME--3EREWARD-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3AOUTCOME--3EREWARD-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **OUTCOME-\>REWARD** *NODE OUTCOME*
 
@@ -250,7 +250,7 @@ For now, the documentation is just a reference. See
     typically negates depending on the parity of [`DEPTH`][3361] in two player
     games.
 
-<a name='x-28MICMAC-2EUCT-3AUPDATE-UCT-STATISTICS-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3AUPDATE-UCT-STATISTICS-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **UPDATE-UCT-STATISTICS** *ROOT PATH OUTCOME*
 
@@ -259,7 +259,7 @@ For now, the documentation is just a reference. See
     get their visit counter incremented while nodes also get an update
     to [`AVERAGE-REWARD`][1acd] based on what [`OUTCOME->REWARD`][4441] returns.
 
-<a name='x-28MICMAC-2EUCT-3AMAKE-UCT-NODE-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3AMAKE-UCT-NODE-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **MAKE-UCT-NODE** *PARENT EDGE PARENT-STATE*
 
@@ -271,7 +271,7 @@ For now, the documentation is just a reference. See
     that one can start from a subclass of [`UCT-NODE`][8ccb] and be sure that that
     class is going to be used for nodes below it.
 
-<a name='x-28MICMAC-2EUCT-3ASTATE-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3ASTATE-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **STATE** *NODE PARENT EDGE PARENT-STATE*
 
@@ -283,14 +283,14 @@ For now, the documentation is just a reference. See
     process as long as it's not stored elsewhere. This function must be
     customized.
 
-<a name='x-28MICMAC-2EUCT-3ALIST-EDGES-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3ALIST-EDGES-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **LIST-EDGES** *NODE STATE*
 
     Return a list of edges representing the possible
     actions from `NODE` with `STATE`. This function must be customized.
 
-<a name='x-28MICMAC-2EUCT-3APLAY-OUT-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3APLAY-OUT-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **PLAY-OUT** *NODE STATE REVERSE-PATH*
 
@@ -300,7 +300,7 @@ For now, the documentation is just a reference. See
     what makes or breaks [`UCT`][fb6d] search. This function must be
     customized.
 
-<a name='x-28MICMAC-2EUCT-3AUCT-20FUNCTION-29'></a>
+<a id='x-28MICMAC-2EUCT-3AUCT-20FUNCTION-29'></a>
 
 - [function] **UCT** *&KEY ROOT FRESH-ROOT-STATE EXPLORATION-BIAS MAX-N-PLAYOUTS*
 
@@ -311,7 +311,7 @@ For now, the documentation is just a reference. See
     corresponding to `ROOT`. This state will be destroyed unless special
     care is taken in [`STATE`][e109].
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3A-40MICMAC-METROPOLIS-HASTINGS-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3A-40MICMAC-METROPOLIS-HASTINGS-20MGL-PAX-3ASECTION-29'></a>
 
 ## 4 Metropolis Hastings
 
@@ -332,14 +332,14 @@ References:
 For now, the documentation is just a reference. See
 `test/test-metropolis-hastings.lisp` for an example.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-20CLASS-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-20CLASS-29'></a>
 
 - [class] **MC-CHAIN**
 
     A simple markov chain for Metropolis Hastings. With
     temperature it is suitable for `MC3`.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ATEMPERATURE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ATEMPERATURE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29'></a>
 
 - [accessor] **TEMPERATURE** *MC-CHAIN* *(:TEMPERATURE = 1.0d0)*
 
@@ -348,13 +348,13 @@ For now, the documentation is just a reference. See
     probability. This effectively flattens the peaks if `TEMPERATURE` >
     1 which makes it easier for the chain to traverse deep valleys.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ASTATE-20-28MGL-PAX-3AREADER-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ASTATE-20-28MGL-PAX-3AREADER-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29'></a>
 
 - [reader] **STATE** *MC-CHAIN* *(:STATE)*
 
     This is the current sample where the chain is.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-TO-SAMPLE-20FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-TO-SAMPLE-20FUNCTION-29'></a>
 
 - [function] **JUMP-TO-SAMPLE** *CHAIN JUMP &KEY (RESULT-SAMPLE (STATE CHAIN))*
 
@@ -362,14 +362,14 @@ For now, the documentation is just a reference. See
     distribution of `CHAIN`) and return the sample where we landed. Reuse
     `RESULT-SAMPLE` when possible. 
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-TO-SAMPLE-2A-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-TO-SAMPLE-2A-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **JUMP-TO-SAMPLE\*** *CHAIN JUMP RESULT-SAMPLE*
 
     This function is called by [`JUMP-TO-SAMPLE`][2acc]. It is
     where [`JUMP-TO-SAMPLE`][2acc] behaviour shall be customized.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3APREPARE-JUMP-DISTRIBUTION-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3APREPARE-JUMP-DISTRIBUTION-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **PREPARE-JUMP-DISTRIBUTION** *CHAIN*
 
@@ -377,14 +377,14 @@ For now, the documentation is just a reference. See
     distribution. Called by [`RANDOM-JUMP`][499c]. The around method ensures that
     nothing is done unless there was a state change.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ARANDOM-JUMP-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ARANDOM-JUMP-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **RANDOM-JUMP** *CHAIN*
 
     Sample a jump from the current distribution of
     jumps that was computed by [`PREPARE-JUMP-DISTRIBUTION`][0ded].
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **LOG-PROBABILITY-RATIO** *CHAIN SAMPLE1 SAMPLE2*
 
@@ -393,7 +393,7 @@ For now, the documentation is just a reference. See
     allow computational shortcuts as opposed to calculating unnormalized
     probabilities separately.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-TO-JUMP-TARGET-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-TO-JUMP-TARGET-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **LOG-PROBABILITY-RATIO-TO-JUMP-TARGET** *CHAIN JUMP TARGET*
 
@@ -402,7 +402,7 @@ For now, the documentation is just a reference. See
     speed. The default implementation just falls back on
     [`LOG-PROBABILITY-RATIO`][8adf].
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-JUMP-PROBABILITY-RATIO-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-JUMP-PROBABILITY-RATIO-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **LOG-JUMP-PROBABILITY-RATIO** *CHAIN JUMP TARGET*
 
@@ -410,43 +410,43 @@ For now, the documentation is just a reference. See
     is the jump distribution and `JUMP` is from the current [`STATE`][39e2] of `CHAIN`
     to `TARGET` sample.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AACCEPTANCE-PROBABILITY-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AACCEPTANCE-PROBABILITY-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **ACCEPTANCE-PROBABILITY** *CHAIN JUMP CANDIDATE*
 
     Calculate the acceptance probability of `CANDIDATE`
     to which `JUMP` leads from the current [`STATE`][39e2] of `CHAIN`.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AACCEPT-JUMP-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AACCEPT-JUMP-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **ACCEPT-JUMP** *CHAIN JUMP CANDIDATE*
 
     Called when `CHAIN` accepts `JUMP` to `CANDIDATE`.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AREJECT-JUMP-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AREJECT-JUMP-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **REJECT-JUMP** *CHAIN JUMP CANDIDATE*
 
     Called when `CHAIN` rejects `JUMP` to `CANDIDATE`. It
     does nothing by default, it's just a convenience for debugging.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMAYBE-JUMP-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMAYBE-JUMP-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **MAYBE-JUMP** *CHAIN JUMP CANDIDATE ACCEPTANCE-PROBABILITY*
 
     Randomly accept or reject `JUMP` to `CANDIDATE` from
     the current state of `CHAIN` with `ACCEPTANCE-PROBABILITY`.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **JUMP** *CHAIN*
 
     Take a step on the markov chain. Return a boolean
     indicating whether the proposed jump was accepted.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMC3-CHAIN-20CLASS-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMC3-CHAIN-20CLASS-29'></a>
 
-- [class] **MC3-CHAIN** *MC-CHAIN*
+- [class] **MC3-CHAIN** *[MC-CHAIN][0f75]*
 
     High probability island separated by low valley
     make the chain poorly mixing. `MC3-CHAIN` has a number of `HOT-CHAINS`
@@ -455,13 +455,13 @@ For now, the documentation is just a reference. See
     `HOT-CHAINS` higher use the very same base probability
     distribution.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AACCEPT-SWAP-CHAIN-STATES-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AACCEPT-SWAP-CHAIN-STATES-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **ACCEPT-SWAP-CHAIN-STATES** *MC3 CHAIN1 CHAIN2*
 
     Swap the states of `CHAIN1` and `CHAIN2` of `MC3`.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AREJECT-SWAP-CHAIN-STATES-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AREJECT-SWAP-CHAIN-STATES-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **REJECT-SWAP-CHAIN-STATES** *MC3 CHAIN1 CHAIN2*
 
@@ -469,40 +469,40 @@ For now, the documentation is just a reference. See
     is rejected. It does nothing by default, it's just a convenience for
     debugging.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMAYBE-SWAP-CHAIN-STATES-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMAYBE-SWAP-CHAIN-STATES-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **MAYBE-SWAP-CHAIN-STATES** *MC3 CHAIN1 CHAIN2 ACCEPTANCE-PROBABILITY*
 
     Swap of states of `CHAIN1` and `CHAIN2` of `MC3` with
     `ACCEPTANCE-PROBABILITY`.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-BETWEEN-CHAINS-20GENERIC-FUNCTION-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-BETWEEN-CHAINS-20GENERIC-FUNCTION-29'></a>
 
 - [generic-function] **JUMP-BETWEEN-CHAINS** *MC3*
 
     Choose two chains randomly and swap their states
     with `MC3` acceptance probability.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AENUMERATING-CHAIN-20CLASS-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3AENUMERATING-CHAIN-20CLASS-29'></a>
 
-- [class] **ENUMERATING-CHAIN** *MC-CHAIN*
+- [class] **ENUMERATING-CHAIN** *[MC-CHAIN][0f75]*
 
     A simple abstract chain subclass that explicitly
     enumerates the probabilities of the distribution.
 
-<a name='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ATRACING-CHAIN-20CLASS-29'></a>
+<a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3ATRACING-CHAIN-20CLASS-29'></a>
 
 - [class] **TRACING-CHAIN**
 
     Mix this in with your chain to have it print trace
     of acceptances/rejections.
 
-<a name='x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29'></a>
+<a id='x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29'></a>
 
 ## 5 Game Theory
 
 ###### \[in package MICMAC.GAME-THEORY\]
-<a name='x-28MICMAC-2EGAME-THEORY-3AFIND-NASH-EQUILIBRIUM-20FUNCTION-29'></a>
+<a id='x-28MICMAC-2EGAME-THEORY-3AFIND-NASH-EQUILIBRIUM-20FUNCTION-29'></a>
 
 - [function] **FIND-NASH-EQUILIBRIUM** *PAYOFF &KEY (N-ITERATIONS 100)*
 
@@ -516,26 +516,27 @@ For now, the documentation is just a reference. See
     equilibrium represented by the oddment vectors.
 
   [0ded]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3APREPARE-JUMP-DISTRIBUTION-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:PREPARE-JUMP-DISTRIBUTION GENERIC-FUNCTION)"
-  [1a05]: #x-28MICMAC-3A-40MICMAC-LINKS-20MGL-PAX-3ASECTION-29 "(MICMAC:@MICMAC-LINKS MGL-PAX:SECTION)"
+  [0f75]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-20CLASS-29 "(MICMAC.METROPOLIS-HASTINGS:MC-CHAIN CLASS)"
+  [1a05]: #x-28MICMAC-3A-40MICMAC-LINKS-20MGL-PAX-3ASECTION-29 "Links"
   [1acd]: #x-28MICMAC-2EUCT-3AAVERAGE-REWARD-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29 "(MICMAC.UCT:AVERAGE-REWARD (MGL-PAX:ACCESSOR MICMAC.UCT:UCT-NODE))"
   [2acc]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-TO-SAMPLE-20FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:JUMP-TO-SAMPLE FUNCTION)"
   [3361]: #x-28MICMAC-2EUCT-3ADEPTH-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-NODE-29-29 "(MICMAC.UCT:DEPTH (MGL-PAX:READER MICMAC.UCT:UCT-NODE))"
   [39e2]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ASTATE-20-28MGL-PAX-3AREADER-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29 "(MICMAC.METROPOLIS-HASTINGS:STATE (MGL-PAX:READER MICMAC.METROPOLIS-HASTINGS:MC-CHAIN))"
   [4441]: #x-28MICMAC-2EUCT-3AOUTCOME--3EREWARD-20GENERIC-FUNCTION-29 "(MICMAC.UCT:OUTCOME->REWARD GENERIC-FUNCTION)"
-  [449f]: #x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29 "(MICMAC:@MICMAC-INTRODUCTION MGL-PAX:SECTION)"
+  [449f]: #x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29 "Introduction"
   [46a1]: #x-28MICMAC-3ABEAM-SEARCH-20FUNCTION-29 "(MICMAC:BEAM-SEARCH FUNCTION)"
   [499c]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ARANDOM-JUMP-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:RANDOM-JUMP GENERIC-FUNCTION)"
   [5d68]: #x-28MICMAC-3APARALLEL-BEAM-SEARCH-20FUNCTION-29 "(MICMAC:PARALLEL-BEAM-SEARCH FUNCTION)"
-  [670f]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3A-40MICMAC-METROPOLIS-HASTINGS-20MGL-PAX-3ASECTION-29 "(MICMAC.METROPOLIS-HASTINGS:@MICMAC-METROPOLIS-HASTINGS MGL-PAX:SECTION)"
-  [724d]: #x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29 "(MICMAC.GAME-THEORY:@MICMAC-GAME-THEORY MGL-PAX:SECTION)"
+  [670f]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3A-40MICMAC-METROPOLIS-HASTINGS-20MGL-PAX-3ASECTION-29 "Metropolis Hastings"
+  [724d]: #x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29 "Game Theory"
   [8adf]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:LOG-PROBABILITY-RATIO GENERIC-FUNCTION)"
   [8ccb]: #x-28MICMAC-2EUCT-3AUCT-NODE-20CLASS-29 "(MICMAC.UCT:UCT-NODE CLASS)"
   [8e5c]: #x-28MICMAC-2EUCT-3AUPDATE-UCT-STATISTICS-20GENERIC-FUNCTION-29 "(MICMAC.UCT:UPDATE-UCT-STATISTICS GENERIC-FUNCTION)"
-  [a6cc]: #x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29 "(MICMAC:@MICMAC-GRAPH-SEARCH MGL-PAX:SECTION)"
+  [a6cc]: #x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29 "Graph Search"
   [abee]: #x-28MICMAC-2EUCT-3AEDGE-SCORE-20GENERIC-FUNCTION-29 "(MICMAC.UCT:EDGE-SCORE GENERIC-FUNCTION)"
-  [ae93]: #x-28MICMAC-3A-40MICMAC-OVERVIEW-20MGL-PAX-3ASECTION-29 "(MICMAC:@MICMAC-OVERVIEW MGL-PAX:SECTION)"
+  [ae93]: #x-28MICMAC-3A-40MICMAC-OVERVIEW-20MGL-PAX-3ASECTION-29 "Overview"
   [be27]: #x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29 "(\"micmac\" ASDF/SYSTEM:SYSTEM)"
-  [ca85]: #x-28MICMAC-2EUCT-3A-40MICMAC-UCT-20MGL-PAX-3ASECTION-29 "(MICMAC.UCT:@MICMAC-UCT MGL-PAX:SECTION)"
+  [ca85]: #x-28MICMAC-2EUCT-3A-40MICMAC-UCT-20MGL-PAX-3ASECTION-29 "UCT"
   [d660]: #x-28MICMAC-3AALPHA-BETA-20FUNCTION-29 "(MICMAC:ALPHA-BETA FUNCTION)"
   [e109]: #x-28MICMAC-2EUCT-3ASTATE-20GENERIC-FUNCTION-29 "(MICMAC.UCT:STATE GENERIC-FUNCTION)"
   [f36e]: #x-28MICMAC-2EUCT-3AMAKE-UCT-NODE-20GENERIC-FUNCTION-29 "(MICMAC.UCT:MAKE-UCT-NODE GENERIC-FUNCTION)"
