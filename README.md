@@ -23,9 +23,11 @@
   such as alpha-beta, UCT and beam search, but it also has some MCMC
   and other slightly unrelated stuff.
 - Licence: MIT, see COPYING.
-- Author: Gábor Melis
+- Author: Gábor Melis <mega@retes.hu>
 - Mailto: [mega@retes.hu](mailto:mega@retes.hu)
-- Homepage: [http://quotenil.com](http://quotenil.com)
+- Homepage: [http://melisgl.github.io/mgl-gpr](http://melisgl.github.io/mgl-gpr)
+- Bug tracker: [https://github.com/melisgl/mgl-gpr/issues](https://github.com/melisgl/mgl-gpr/issues)
+- Source control: [GIT](https://github.com/melisgl/mgl-gpr.git)
 
 <a id='x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29'></a>
 
