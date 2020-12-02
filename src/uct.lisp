@@ -139,20 +139,18 @@
   get their visit counter incremented while nodes also get an update
   to AVERAGE-REWARD based on what OUTCOME->REWARD returns.")
   (:method ((node uct-node) path outcome)
-    (loop for x on path by #'cddr do
-          (let ((node (first x))
-                (edge (second x)))
-            (incf (n-visits node))
-            (incf (average-reward node) (/ (- (outcome->reward node outcome)
-                                              (average-reward node))
-                                           (n-visits node)))
-            (when edge
-              (incf (n-visits edge)))))))
+    (loop for (node edge) on path by #'cddr do
+          (incf (n-visits node))
+          (incf (average-reward node) (/ (- (outcome->reward node outcome)
+                                            (average-reward node))
+                                         (n-visits node)))
+          (when edge
+            (incf (n-visits edge))))))
 
 (defgeneric make-uct-node (parent edge parent-state)
-  (:documentation "Create a node representing the state of that EDGE
-  leads to from PARENT. Specialize this if you want to keep track of
-  the state which is not done by default as it can be expensive,
+  (:documentation "Create a node representing the state that EDGE
+  leads to (from PARENT). Specialize this if you want to keep track of
+  the state, which is not done by default as it can be expensive,
   especially in light of TAKE-ACTION mutating it. The default
   implementation simply creates an instance of the class of PARENT so
   that one can start from a subclass of UCT-NODE and be sure that that
@@ -182,7 +180,7 @@
   customized."))
 
 (defun uct (&key root fresh-root-state exploration-bias max-n-playouts)
-  "Starting from the ROOT node search the tree expanding it one node
+  "Starting from the ROOT node, search the tree expanding it one node
   for each playout. Finally return the mutated ROOT. ROOT may be the
   root node of any tree, need not be a single node with no edges.
   FRESH-ROOT-STATE is a function that returns a fresh state

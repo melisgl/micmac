@@ -44,7 +44,7 @@
 
 
 ;;;; Same thing but with the reward being from the point of view of
-;;;; the starting player at all depth. Instead of having to play
+;;;; the starting player at all depths. Instead of having to play
 ;;;; negation tricks with OUTCOME->REWARD and AVERAGE-REWARD, here we
 ;;;; specialize only AVERAGE-REWARD.
 
@@ -79,15 +79,14 @@
                     :max-n-playouts 100))
          (visited-edges (visited-edges root)))
     (assert (endp (unvisited-edges root)))
-    (assert (and visited-edges
-                 (eq 1 (action (extremum visited-edges #'> :key #'n-visits)))))
+    (assert visited-edges)
+    (assert (eq 1 (action (extremum visited-edges #'> :key #'n-visits))))
     (let* ((edge (find 1 (edges root) :key #'action))
            (node (to-node edge))
            (visited-edges (visited-edges node)))
       (assert (endp (unvisited-edges node)))
-      (assert (and visited-edges
-                   (eq -1 (action (extremum visited-edges #'>
-                                            :key #'n-visits))))))))
+      (assert visited-edges)
+      (assert (eq -1 (action (extremum visited-edges #'> :key #'n-visits)))))))
 
 (defun test-uct ()
   (loop repeat 100 do (test-uct-random-walk 'random-walk-node))
