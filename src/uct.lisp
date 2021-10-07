@@ -164,9 +164,8 @@
   not a straightforward accessor unless NODE is customized to store
   it. The rest of the parameters are provided so that one can
   reconstruct the state by taking the action of EDGE in the
-  PARENT-STATE of PARENT. It's okay to destroy PARENT-STATE in the
-  process as long as it's not stored elsewhere. This function must be
-  customized."))
+  PARENT-STATE of PARENT. It's allowed to mutate PARENT-STATE and
+  return it. This function must be specialized."))
 
 (defgeneric list-edges (node state)
   (:documentation "Return a list of edges representing the possible
