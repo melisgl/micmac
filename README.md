@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-- [1 micmac ASDF System Details][be27]
+- [1 MICMAC ASDF System Details][be27]
 - [2 Introduction][449f]
     - [2.1 Overview][ae93]
     - [2.2 Links][1a05]
@@ -16,7 +16,7 @@
 ###### \[in package MICMAC\]
 <a id='x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29'></a>
 
-## 1 micmac ASDF System Details
+## 1 MICMAC ASDF System Details
 
 - Version: 0.0.2
 - Description: Micmac is mainly a library of graph search algorithms
@@ -70,7 +70,7 @@ for the latest version.
     destructively modify `STATE` provided it undoes the damage after FN
     returns. `CALL-WITH-ACTION` is called with `NIL` as `ACTION` for the root
     of the tree, in this case `STATE` need not be changed. FN returns the
-    same kinds of values as [`ALPHA-BETA`][d660]. They may be useful for logging.
+    same kinds of values as `ALPHA-BETA`. They may be useful for logging.
     
     `MAYBE-EVALUATE-STATE` is a function of (`STATE` `DEPTH`). If `STATE` at
     `DEPTH` is a terminal node then it returns the score from the point of
@@ -137,7 +137,7 @@ for the latest version.
 
     This is very much like [`BEAM-SEARCH`][46a1] except it solves a number of
     instances of the same search problem starting from different sets of
-    nodes. The sole purpose of [`PARALLEL-BEAM-SEARCH`][5d68] is to amortize the
+    nodes. The sole purpose of `PARALLEL-BEAM-SEARCH` is to amortize the
     cost `EXPAND-BEAM-FN` if possible.
     
     `EXPAND-BEAMS-FN` is called with sequence of beams (i.e. it's a
@@ -146,7 +146,7 @@ for the latest version.
     reachable nodes of the nodes in the corresponding element of its
     argument sequence.
     
-    [`PARALLEL-BEAM-SEARCH`][5d68] returns a sequence of solutions sequences, and
+    `PARALLEL-BEAM-SEARCH` returns a sequence of solutions sequences, and
     a sequence of active node sequences.
     
     See `test/test-beam-search.lisp` for an example.
@@ -265,9 +265,9 @@ For now, the documentation is just a reference. See
 
 - [generic-function] **MAKE-UCT-NODE** *PARENT EDGE PARENT-STATE*
 
-    Create a node representing the state of that `EDGE`
-    leads to from `PARENT`. Specialize this if you want to keep track of
-    the state which is not done by default as it can be expensive,
+    Create a node representing the state that `EDGE`
+    leads to (from `PARENT`). Specialize this if you want to keep track of
+    the state, which is not done by default as it can be expensive,
     especially in light of TAKE-ACTION mutating it. The default
     implementation simply creates an instance of the class of `PARENT` so
     that one can start from a subclass of [`UCT-NODE`][8ccb] and be sure that that
@@ -281,9 +281,8 @@ For now, the documentation is just a reference. See
     not a straightforward accessor unless `NODE` is customized to store
     it. The rest of the parameters are provided so that one can
     reconstruct the state by taking the action of `EDGE` in the
-    `PARENT-STATE` of `PARENT`. It's okay to destroy `PARENT-STATE` in the
-    process as long as it's not stored elsewhere. This function must be
-    customized.
+    `PARENT-STATE` of `PARENT`. It's allowed to mutate `PARENT-STATE` and
+    return it. This function must be specialized.
 
 <a id='x-28MICMAC-2EUCT-3ALIST-EDGES-20GENERIC-FUNCTION-29'></a>
 
@@ -306,7 +305,7 @@ For now, the documentation is just a reference. See
 
 - [function] **UCT** *&KEY ROOT FRESH-ROOT-STATE EXPLORATION-BIAS MAX-N-PLAYOUTS*
 
-    Starting from the `ROOT` node search the tree expanding it one node
+    Starting from the `ROOT` node, search the tree expanding it one node
     for each playout. Finally return the mutated `ROOT`. `ROOT` may be the
     root node of any tree, need not be a single node with no edges.
     `FRESH-ROOT-STATE` is a function that returns a fresh state
@@ -317,7 +316,7 @@ For now, the documentation is just a reference. See
 
 ## 4 Metropolis Hastings
 
-###### \[in package MICMAC.METROPOLIS-HASTINGS\]
+###### \[in package MICMAC.METROPOLIS-HASTINGS with nicknames MICMAC.MH\]
 Generic interface for the Metropolis-Hastings algorithm, also
 Metropolis Coupled MCMC.
 
@@ -528,7 +527,6 @@ For now, the documentation is just a reference. See
   [449f]: #x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29 "Introduction"
   [46a1]: #x-28MICMAC-3ABEAM-SEARCH-20FUNCTION-29 "(MICMAC:BEAM-SEARCH FUNCTION)"
   [499c]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ARANDOM-JUMP-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:RANDOM-JUMP GENERIC-FUNCTION)"
-  [5d68]: #x-28MICMAC-3APARALLEL-BEAM-SEARCH-20FUNCTION-29 "(MICMAC:PARALLEL-BEAM-SEARCH FUNCTION)"
   [670f]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3A-40MICMAC-METROPOLIS-HASTINGS-20MGL-PAX-3ASECTION-29 "Metropolis Hastings"
   [724d]: #x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29 "Game Theory"
   [8adf]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:LOG-PROBABILITY-RATIO GENERIC-FUNCTION)"
@@ -539,7 +537,6 @@ For now, the documentation is just a reference. See
   [ae93]: #x-28MICMAC-3A-40MICMAC-OVERVIEW-20MGL-PAX-3ASECTION-29 "Overview"
   [be27]: #x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29 "(\"micmac\" ASDF/SYSTEM:SYSTEM)"
   [ca85]: #x-28MICMAC-2EUCT-3A-40MICMAC-UCT-20MGL-PAX-3ASECTION-29 "UCT"
-  [d660]: #x-28MICMAC-3AALPHA-BETA-20FUNCTION-29 "(MICMAC:ALPHA-BETA FUNCTION)"
   [e109]: #x-28MICMAC-2EUCT-3ASTATE-20GENERIC-FUNCTION-29 "(MICMAC.UCT:STATE GENERIC-FUNCTION)"
   [f36e]: #x-28MICMAC-2EUCT-3AMAKE-UCT-NODE-20GENERIC-FUNCTION-29 "(MICMAC.UCT:MAKE-UCT-NODE GENERIC-FUNCTION)"
   [fb6d]: #x-28MICMAC-2EUCT-3AUCT-20FUNCTION-29 "(MICMAC.UCT:UCT FUNCTION)"

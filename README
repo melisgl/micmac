@@ -1,7 +1,7 @@
 # Micmac Manual
 
 ###### \[in package MICMAC\]
-## micmac ASDF System Details
+## MICMAC ASDF System Details
 
 - Version: 0.0.2
 - Description: Micmac is mainly a library of graph search algorithms
@@ -204,9 +204,9 @@ For now, the documentation is just a reference. See
 
 - [generic-function] MAKE-UCT-NODE PARENT EDGE PARENT-STATE
 
-    Create a node representing the state of that EDGE
-    leads to from PARENT. Specialize this if you want to keep track of
-    the state which is not done by default as it can be expensive,
+    Create a node representing the state that EDGE
+    leads to (from PARENT). Specialize this if you want to keep track of
+    the state, which is not done by default as it can be expensive,
     especially in light of TAKE-ACTION mutating it. The default
     implementation simply creates an instance of the class of PARENT so
     that one can start from a subclass of UCT-NODE and be sure that that
@@ -218,9 +218,8 @@ For now, the documentation is just a reference. See
     not a straightforward accessor unless NODE is customized to store
     it. The rest of the parameters are provided so that one can
     reconstruct the state by taking the action of EDGE in the
-    PARENT-STATE of PARENT. It's okay to destroy PARENT-STATE in the
-    process as long as it's not stored elsewhere. This function must be
-    customized.
+    PARENT-STATE of PARENT. It's allowed to mutate PARENT-STATE and
+    return it. This function must be specialized.
 
 - [generic-function] LIST-EDGES NODE STATE
 
@@ -237,7 +236,7 @@ For now, the documentation is just a reference. See
 
 - [function] UCT &KEY ROOT FRESH-ROOT-STATE EXPLORATION-BIAS MAX-N-PLAYOUTS
 
-    Starting from the ROOT node search the tree expanding it one node
+    Starting from the ROOT node, search the tree expanding it one node
     for each playout. Finally return the mutated ROOT. ROOT may be the
     root node of any tree, need not be a single node with no edges.
     FRESH-ROOT-STATE is a function that returns a fresh state
@@ -246,7 +245,7 @@ For now, the documentation is just a reference. See
 
 ## Metropolis Hastings
 
-###### \[in package MICMAC.METROPOLIS-HASTINGS\]
+###### \[in package MICMAC.METROPOLIS-HASTINGS with nicknames MICMAC.MH\]
 Generic interface for the Metropolis-Hastings algorithm, also
 Metropolis Coupled MCMC.
 
