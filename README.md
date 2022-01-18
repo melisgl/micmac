@@ -368,7 +368,7 @@ For now, the documentation is just a reference. See
 - [generic-function] **JUMP-TO-SAMPLE\*** *CHAIN JUMP RESULT-SAMPLE*
 
     This function is called by [`JUMP-TO-SAMPLE`][2acc]. It is
-    where [`JUMP-TO-SAMPLE`][2acc] behaviour shall be customized.
+    where `JUMP-TO-SAMPLE` behaviour shall be customized.
 
 <a id='x-28MICMAC-2EMETROPOLIS-HASTINGS-3APREPARE-JUMP-DISTRIBUTION-20GENERIC-FUNCTION-29'></a>
 
@@ -532,6 +532,8 @@ For now, the documentation is just a reference. See
   [8adf]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ALOG-PROBABILITY-RATIO-20GENERIC-FUNCTION-29 "(MICMAC.METROPOLIS-HASTINGS:LOG-PROBABILITY-RATIO GENERIC-FUNCTION)"
   [8ccb]: #x-28MICMAC-2EUCT-3AUCT-NODE-20CLASS-29 "(MICMAC.UCT:UCT-NODE CLASS)"
   [8e5c]: #x-28MICMAC-2EUCT-3AUPDATE-UCT-STATISTICS-20GENERIC-FUNCTION-29 "(MICMAC.UCT:UPDATE-UCT-STATISTICS GENERIC-FUNCTION)"
+  [94b1]: http://www.lispworks.com/documentation/HyperSpec/Body/t_nil.htm "(NIL TYPE)"
+  [9d3a]: http://www.lispworks.com/documentation/HyperSpec/Body/v_nil.htm "(NIL MGL-PAX:CONSTANT)"
   [a6cc]: #x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29 "Graph Search"
   [abee]: #x-28MICMAC-2EUCT-3AEDGE-SCORE-20GENERIC-FUNCTION-29 "(MICMAC.UCT:EDGE-SCORE GENERIC-FUNCTION)"
   [ae93]: #x-28MICMAC-3A-40MICMAC-OVERVIEW-20MGL-PAX-3ASECTION-29 "Overview"
