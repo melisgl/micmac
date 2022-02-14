@@ -3,7 +3,7 @@
 
 ## Table of Contents
 
-- [1 MICMAC ASDF System Details][04d7]
+- [1 `MICMAC` ASDF System][04d7]
 - [2 Introduction][5825]
     - [2.1 Overview][ac40]
     - [2.2 Links][3bf2]
@@ -14,7 +14,7 @@
 
 ###### \[in package MICMAC\]
 <a id="x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29"></a>
-## 1 MICMAC ASDF System Details
+## 1 `MICMAC` ASDF System
 
 - Version: 0.0.2
 - Description: Micmac is mainly a library of graph search algorithms
@@ -163,7 +163,7 @@ For now, the documentation is just a reference. See
     the starting state or by customizing [`MAKE-UCT-NODE`][496c].
 
 <a id="x-28MICMAC-2EUCT-3ADEPTH-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-NODE-29-29"></a>
-- [reader] **DEPTH** *UCT-NODE* *(:DEPTH = 0)*
+- [reader] **DEPTH** *UCT-NODE (:DEPTH = 0)*
 
 <a id="x-28MICMAC-2EUCT-3AEDGES-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29"></a>
 - [accessor] **EDGES** *UCT-NODE*
@@ -171,7 +171,7 @@ For now, the documentation is just a reference. See
     Outgoing edges.
 
 <a id="x-28MICMAC-2EUCT-3AAVERAGE-REWARD-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29"></a>
-- [accessor] **AVERAGE-REWARD** *UCT-NODE* *(:AVERAGE-REWARD = 0)*
+- [accessor] **AVERAGE-REWARD** *UCT-NODE (:AVERAGE-REWARD = 0)*
 
     Average reward over random playouts started from
     below this node. See [`UPDATE-UCT-STATISTICS`][76b0] and REWARD.
@@ -185,17 +185,17 @@ For now, the documentation is just a reference. See
     specialize [`AVERAGE-REWARD`][7c34] for the edges if that's not the case.
 
 <a id="x-28MICMAC-2EUCT-3AACTION-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-EDGE-29-29"></a>
-- [reader] **ACTION** *UCT-EDGE* *(:ACTION)*
+- [reader] **ACTION** *UCT-EDGE (:ACTION)*
 
     The action represented by the edge.
 
 <a id="x-28MICMAC-2EUCT-3AFROM-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29"></a>
-- [accessor] **FROM-NODE** *UCT-EDGE* *(:FROM-NODE)*
+- [accessor] **FROM-NODE** *UCT-EDGE (:FROM-NODE)*
 
     The node this edge starts from.
 
 <a id="x-28MICMAC-2EUCT-3ATO-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29"></a>
-- [accessor] **TO-NODE** *UCT-EDGE* *(= NIL)*
+- [accessor] **TO-NODE** *UCT-EDGE (= NIL)*
 
     The node this edge points to if the edge has been
     visited or `NIL`.
@@ -310,7 +310,7 @@ For now, the documentation is just a reference. See
     temperature it is suitable for `MC3`.
 
 <a id="x-28MICMAC-2EMETROPOLIS-HASTINGS-3ATEMPERATURE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29"></a>
-- [accessor] **TEMPERATURE** *MC-CHAIN* *(:TEMPERATURE = 1.0d0)*
+- [accessor] **TEMPERATURE** *MC-CHAIN (:TEMPERATURE = 1.0d0)*
 
     The PROBABILITY-RATIO of samples is raised to the
     power of 1 / `TEMPERATURE` before calculating the acceptance
@@ -318,7 +318,7 @@ For now, the documentation is just a reference. See
     1 which makes it easier for the chain to traverse deep valleys.
 
 <a id="x-28MICMAC-2EMETROPOLIS-HASTINGS-3ASTATE-20-28MGL-PAX-3AREADER-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29"></a>
-- [reader] **STATE** *MC-CHAIN* *(:STATE)*
+- [reader] **STATE** *MC-CHAIN (:STATE)*
 
     This is the current sample where the chain is.
 

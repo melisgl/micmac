@@ -1,6 +1,6 @@
 (in-package :micmac.uct)
 
-(defsection @micmac-uct (:title "UCT")
+(defsection @micmac-uct (:title "\\UCT")
   "UCT Monte Carlo tree search. This is what makes current Go programs
   tick. And Hex programs as well, for that matter. This is a cleanup
   and generalization of code originally created in course of the

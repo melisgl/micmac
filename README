@@ -1,7 +1,7 @@
 # Micmac Manual
 
 ###### \[in package MICMAC\]
-## MICMAC ASDF System Details
+## MICMAC ASDF System
 
 - Version: 0.0.2
 - Description: Micmac is mainly a library of graph search algorithms
