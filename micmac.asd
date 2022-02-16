@@ -12,7 +12,7 @@
   :description "Micmac is mainly a library of graph search algorithms
   such as alpha-beta, UCT and beam search, but it also has some MCMC
   and other slightly unrelated stuff."
-  :depends-on (#:mgl-pax)
+  :depends-on (#:alexandria #:mgl-pax)
   :components ((:module "src"
                         :serial t
                         :components ((:file "package")
