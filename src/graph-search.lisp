@@ -4,7 +4,7 @@
   (alpha-beta function)
   (beam-search function)
   (parallel-beam-search function)
-  (micmac.uct:@micmac-uct section))
+  (micmac.uct::@micmac-uct section))
 
 (defun alpha-beta (state &key (depth 0) alpha beta
                    call-with-action maybe-evaluate-state list-actions

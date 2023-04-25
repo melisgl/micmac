@@ -4,8 +4,8 @@
   (micmac asdf:system)
   (@micmac-introduction section)
   (@micmac-graph-search section)
-  (micmac.metropolis-hastings:@micmac-metropolis-hastings section)
-  (micmac.game-theory:@micmac-game-theory section))
+  (micmac.metropolis-hastings::@micmac-metropolis-hastings section)
+  (micmac.game-theory::@micmac-game-theory section))
 
 (defsection @micmac-introduction (:title "Introduction")
   (@micmac-overview section)
