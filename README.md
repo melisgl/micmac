@@ -4,38 +4,37 @@
 
 ## Table of Contents
 
-- [1 The micmac ASDF System][04d7]
-- [2 Introduction][5825]
-    - [2.1 Overview][ac40]
-    - [2.2 Links][3bf2]
-- [3 Graph Search][2c8a]
-    - [3.1 UCT][7169]
-- [4 Metropolis Hastings][d1c6]
-- [5 Game Theory][a80e]
+- [1 Introduction][5825]
+    - [1.1 Overview][ac40]
+    - [1.2 Links][3bf2]
+- [2 Graph Search][2c8a]
+    - [2.1 UCT][7169]
+- [3 Metropolis Hastings][d1c6]
+- [4 Game Theory][a80e]
 
 ###### \[in package MICMAC\]
 <a id="x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29"></a>
 
-## 1 The micmac ASDF System
-
-- Version: 0.0.2
-- Description: Micmac is mainly a library of graph search algorithms
-  such as alpha-beta, UCT and beam search, but it also has some MCMC
-  and other slightly unrelated stuff.
-- Licence: MIT, see COPYING.
-- Author: Gábor Melis <mega@retes.hu>
-- Mailto: [mega@retes.hu](mailto:mega@retes.hu)
-- Homepage: [http://melisgl.github.io/mgl-gpr](http://melisgl.github.io/mgl-gpr)
-- Bug tracker: [https://github.com/melisgl/mgl-gpr/issues](https://github.com/melisgl/mgl-gpr/issues)
-- Source control: [GIT](https://github.com/melisgl/mgl-gpr.git)
+- [system] **"micmac"**
+    - _Version:_ 0.0.2
+    - _Description:_ Micmac is mainly a library of graph search algorithms
+        such as alpha-beta, UCT and beam search, but it also has some MCMC
+        and other slightly unrelated stuff.
+    - _Licence:_ MIT, see COPYING.
+    - _Author:_ Gábor Melis <mega@retes.hu>
+    - _Mailto:_ [mega@retes.hu](mailto:mega@retes.hu)
+    - _Homepage:_ [http://melisgl.github.io/mgl-gpr](http://melisgl.github.io/mgl-gpr)
+    - _Bug tracker:_ [https://github.com/melisgl/mgl-gpr/issues](https://github.com/melisgl/mgl-gpr/issues)
+    - _Source control:_ [GIT](https://github.com/melisgl/mgl-gpr.git)
+    - *Depends on:* alexandria, mgl-pax
 
 <a id="x-28MICMAC-3A-40MICMAC-INTRODUCTION-20MGL-PAX-3ASECTION-29"></a>
 
-## 2 Introduction
+## 1 Introduction
 
 <a id="x-28MICMAC-3A-40MICMAC-OVERVIEW-20MGL-PAX-3ASECTION-29"></a>
 
-### 2.1 Overview
+### 1.1 Overview
 
 MICMAC is a Common Lisp library by [Gábor
 Melis](http://quotenil.com) focusing on [graph
@@ -43,7 +42,7 @@ search](http://en.wikipedia.org/wiki/Graph_traversal) algorithms.
 
 <a id="x-28MICMAC-3A-40MICMAC-LINKS-20MGL-PAX-3ASECTION-29"></a>
 
-### 2.2 Links
+### 1.2 Links
 
 Here is the [official
 repository](https://github.com/melisgl/micmac) and the [HTML
@@ -52,7 +51,7 @@ for the latest version.
 
 <a id="x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29"></a>
 
-## 3 Graph Search
+## 2 Graph Search
 
 <a id="x-28MICMAC-3AALPHA-BETA-20FUNCTION-29"></a>
 
@@ -153,7 +152,7 @@ for the latest version.
 
 <a id="x-28MICMAC-2EUCT-3A-40MICMAC-UCT-20MGL-PAX-3ASECTION-29"></a>
 
-### 3.1 UCT
+### 2.1 UCT
 
 ###### \[in package MICMAC.UCT\]
 [`UCT`][e061] Monte Carlo tree search. This is what makes current Go programs
@@ -175,17 +174,17 @@ For now, the documentation is just a reference. See
 
 <a id="x-28MICMAC-2EUCT-3ADEPTH-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-NODE-29-29"></a>
 
-- [reader] **DEPTH** *UCT-NODE (:DEPTH = 0)*
+- [reader] **DEPTH** *[UCT-NODE][5b77] (:DEPTH = 0)*
 
 <a id="x-28MICMAC-2EUCT-3AEDGES-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29"></a>
 
-- [accessor] **EDGES** *UCT-NODE*
+- [accessor] **EDGES** *[UCT-NODE][5b77]*
 
     Outgoing edges.
 
 <a id="x-28MICMAC-2EUCT-3AAVERAGE-REWARD-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29"></a>
 
-- [accessor] **AVERAGE-REWARD** *UCT-NODE (:AVERAGE-REWARD = 0)*
+- [accessor] **AVERAGE-REWARD** *[UCT-NODE][5b77] (:AVERAGE-REWARD = 0)*
 
     Average reward over random playouts started from
     below this node. See [`UPDATE-UCT-STATISTICS`][76b0] and REWARD.
@@ -201,19 +200,19 @@ For now, the documentation is just a reference. See
 
 <a id="x-28MICMAC-2EUCT-3AACTION-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-EDGE-29-29"></a>
 
-- [reader] **ACTION** *UCT-EDGE (:ACTION)*
+- [reader] **ACTION** *[UCT-EDGE][86c7] (:ACTION)*
 
     The action represented by the edge.
 
 <a id="x-28MICMAC-2EUCT-3AFROM-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29"></a>
 
-- [accessor] **FROM-NODE** *UCT-EDGE (:FROM-NODE)*
+- [accessor] **FROM-NODE** *[UCT-EDGE][86c7] (:FROM-NODE)*
 
     The node this edge starts from.
 
 <a id="x-28MICMAC-2EUCT-3ATO-NODE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-EDGE-29-29"></a>
 
-- [accessor] **TO-NODE** *UCT-EDGE (= NIL)*
+- [accessor] **TO-NODE** *[UCT-EDGE][86c7] (= NIL)*
 
     The node this edge points to if the edge has been
     visited or `NIL`.
@@ -314,7 +313,7 @@ For now, the documentation is just a reference. See
 
 <a id="x-28MICMAC-2EMETROPOLIS-HASTINGS-3A-40MICMAC-METROPOLIS-HASTINGS-20MGL-PAX-3ASECTION-29"></a>
 
-## 4 Metropolis Hastings
+## 3 Metropolis Hastings
 
 ###### \[in package MICMAC.METROPOLIS-HASTINGS with nicknames MICMAC.MH\]
 Generic interface for the Metropolis-Hastings algorithm, also
@@ -342,7 +341,7 @@ For now, the documentation is just a reference. See
 
 <a id="x-28MICMAC-2EMETROPOLIS-HASTINGS-3ATEMPERATURE-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29"></a>
 
-- [accessor] **TEMPERATURE** *MC-CHAIN (:TEMPERATURE = 1.0d0)*
+- [accessor] **TEMPERATURE** *[MC-CHAIN][ee90] (:TEMPERATURE = 1.0d0)*
 
     The PROBABILITY-RATIO of samples is raised to the
     power of 1 / `TEMPERATURE` before calculating the acceptance
@@ -351,7 +350,7 @@ For now, the documentation is just a reference. See
 
 <a id="x-28MICMAC-2EMETROPOLIS-HASTINGS-3ASTATE-20-28MGL-PAX-3AREADER-20MICMAC-2EMETROPOLIS-HASTINGS-3AMC-CHAIN-29-29"></a>
 
-- [reader] **STATE** *MC-CHAIN (:STATE)*
+- [reader] **STATE** *[MC-CHAIN][ee90] (:STATE)*
 
     This is the current sample where the chain is.
 
@@ -500,7 +499,7 @@ For now, the documentation is just a reference. See
 
 <a id="x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29"></a>
 
-## 5 Game Theory
+## 4 Game Theory
 
 ###### \[in package MICMAC.GAME-THEORY\]
 <a id="x-28MICMAC-2EGAME-THEORY-3AFIND-NASH-EQUILIBRIUM-20FUNCTION-29"></a>
@@ -516,7 +515,6 @@ For now, the documentation is just a reference. See
     and the third is the expected payoff of the row player in the nash
     equilibrium represented by the oddment vectors.
 
-  [04d7]: #x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29 '"micmac" ASDF/SYSTEM:SYSTEM'
   [0676]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3ARANDOM-JUMP-20GENERIC-FUNCTION-29 "MICMAC.METROPOLIS-HASTINGS:RANDOM-JUMP GENERIC-FUNCTION"
   [28a5]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3APREPARE-JUMP-DISTRIBUTION-20GENERIC-FUNCTION-29 "MICMAC.METROPOLIS-HASTINGS:PREPARE-JUMP-DISTRIBUTION GENERIC-FUNCTION"
   [2c8a]: #x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29 "Graph Search"
@@ -530,6 +528,7 @@ For now, the documentation is just a reference. See
   [7698]: #x-28MICMAC-2EUCT-3ADEPTH-20-28MGL-PAX-3AREADER-20MICMAC-2EUCT-3AUCT-NODE-29-29 "MICMAC.UCT:DEPTH (MGL-PAX:READER MICMAC.UCT:UCT-NODE)"
   [76b0]: #x-28MICMAC-2EUCT-3AUPDATE-UCT-STATISTICS-20GENERIC-FUNCTION-29 "MICMAC.UCT:UPDATE-UCT-STATISTICS GENERIC-FUNCTION"
   [7c34]: #x-28MICMAC-2EUCT-3AAVERAGE-REWARD-20-28MGL-PAX-3AACCESSOR-20MICMAC-2EUCT-3AUCT-NODE-29-29 "MICMAC.UCT:AVERAGE-REWARD (MGL-PAX:ACCESSOR MICMAC.UCT:UCT-NODE)"
+  [86c7]: #x-28MICMAC-2EUCT-3AUCT-EDGE-20CLASS-29 "MICMAC.UCT:UCT-EDGE CLASS"
   [90e6]: #x-28MICMAC-2EMETROPOLIS-HASTINGS-3AJUMP-TO-SAMPLE-20FUNCTION-29 "MICMAC.METROPOLIS-HASTINGS:JUMP-TO-SAMPLE FUNCTION"
   [a04f]: #x-28MICMAC-2EUCT-3ASTATE-20GENERIC-FUNCTION-29 "MICMAC.UCT:STATE GENERIC-FUNCTION"
   [a80e]: #x-28MICMAC-2EGAME-THEORY-3A-40MICMAC-GAME-THEORY-20MGL-PAX-3ASECTION-29 "Game Theory"
