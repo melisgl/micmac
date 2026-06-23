@@ -66,7 +66,7 @@ for the latest version.
     
     `CALL-WITH-ACTION` is a function of `(STATE DEPTH ACTION FN)`. It
     carries out `ACTION` (returned by `LIST-ACTIONS` or `NIL`) to get the
-    state corresponding to `DEPTH` and calls FN with that state. It may
+    state corresponding to `DEPTH` and calls `FN` with that state. It may
     destructively modify `STATE` provided it undoes the damage after FN
     returns. `CALL-WITH-ACTION` is called with `NIL` as `ACTION` for the
     root of the tree, in this case `STATE` need not be changed. `FN`
