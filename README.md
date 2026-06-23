@@ -16,6 +16,7 @@
 <a id="x-28-22micmac-22-20ASDF-2FSYSTEM-3ASYSTEM-29"></a>
 
 - [system] **"micmac"**
+
     - _Version:_ 0.0.2
     - _Description:_ Micmac is mainly a library of graph search algorithms
         such as alpha-beta, UCT and beam search, but it also has some MCMC
@@ -23,8 +24,8 @@
     - _Licence:_ MIT, see COPYING.
     - _Author:_ Gábor Melis <mega@retes.hu>
     - _Mailto:_ [mega@retes.hu](mailto:mega@retes.hu)
-    - _Homepage:_ [http://melisgl.github.io/mgl-gpr](http://melisgl.github.io/mgl-gpr)
-    - _Bug tracker:_ [https://github.com/melisgl/mgl-gpr/issues](https://github.com/melisgl/mgl-gpr/issues)
+    - _Homepage:_ <http://melisgl.github.io/mgl-gpr>
+    - _Bug tracker:_ <https://github.com/melisgl/mgl-gpr/issues>
     - _Source control:_ [GIT](https://github.com/melisgl/mgl-gpr.git)
     - *Depends on:* alexandria, mgl-pax
 
@@ -63,15 +64,16 @@ for the latest version.
     of view of the player to move at `DEPTH` and as the second value the
     list of actions of the principal variant.
     
-    `CALL-WITH-ACTION` is a function of (`STATE` `DEPTH` `ACTION` FN). It
+    `CALL-WITH-ACTION` is a function of `(STATE DEPTH ACTION FN)`. It
     carries out `ACTION` (returned by `LIST-ACTIONS` or `NIL`) to get the
     state corresponding to `DEPTH` and calls FN with that state. It may
     destructively modify `STATE` provided it undoes the damage after FN
-    returns. `CALL-WITH-ACTION` is called with `NIL` as `ACTION` for the root
-    of the tree, in this case `STATE` need not be changed. FN returns the
-    same kinds of values as `ALPHA-BETA`. They may be useful for logging.
+    returns. `CALL-WITH-ACTION` is called with `NIL` as `ACTION` for the
+    root of the tree, in this case `STATE` need not be changed. `FN`
+    returns the same kinds of values as `ALPHA-BETA`. They may be useful
+    for logging.
     
-    `MAYBE-EVALUATE-STATE` is a function of (`STATE` `DEPTH`). If `STATE` at
+    `MAYBE-EVALUATE-STATE` is a function of `(STATE DEPTH)`. If `STATE` at
     `DEPTH` is a terminal node then it returns the score from the point of
     view of the player to move and as the second value a list of actions
     that lead from `STATE` to the position that was evaluated. The list of

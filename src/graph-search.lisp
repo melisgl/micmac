@@ -15,15 +15,16 @@
   of view of the player to move at DEPTH and as the second value the
   list of actions of the principal variant.
 
-  CALL-WITH-ACTION is a function of (STATE DEPTH ACTION FN). It
-  carries out ACTION (returned by LIST-ACTIONS or NIL) to get the
+  CALL-WITH-ACTION is a function of `(STATE DEPTH ACTION FN)`. It
+  carries out `ACTION` (returned by LIST-ACTIONS or NIL) to get the
   state corresponding to DEPTH and calls FN with that state. It may
   destructively modify STATE provided it undoes the damage after FN
-  returns. CALL-WITH-ACTION is called with NIL as ACTION for the root
-  of the tree, in this case STATE need not be changed. FN returns the
-  same kinds of values as ALPHA-BETA. They may be useful for logging.
+  returns. CALL-WITH-ACTION is called with NIL as `ACTION` for the
+  root of the tree, in this case STATE need not be changed. `FN`
+  returns the same kinds of values as ALPHA-BETA. They may be useful
+  for logging.
 
-  MAYBE-EVALUATE-STATE is a function of (STATE DEPTH). If STATE at
+  MAYBE-EVALUATE-STATE is a function of `(STATE DEPTH)`. If STATE at
   DEPTH is a terminal node then it returns the score from the point of
   view of the player to move and as the second value a list of actions
   that lead from STATE to the position that was evaluated. The list of
