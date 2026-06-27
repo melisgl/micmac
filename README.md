@@ -45,10 +45,9 @@ search](http://en.wikipedia.org/wiki/Graph_traversal) algorithms.
 
 ### 1.2 Links
 
-Here is the [official
-repository](https://github.com/melisgl/micmac) and the [HTML
-documentation](http://melisgl.github.io/mgl-pax-world/micmac-manual.html)
-for the latest version.
+The official repository is <https://github.com/melisgl/micmac>, and
+this document in available in various formats on
+<https://fixnum.com> for the latest version.
 
 <a id="x-28MICMAC-3A-40MICMAC-GRAPH-SEARCH-20MGL-PAX-3ASECTION-29"></a>
 
