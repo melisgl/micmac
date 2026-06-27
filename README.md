@@ -87,10 +87,10 @@ for the latest version.
     `CALL-WITH-ACTION`, `MAYBE-EVALUATE-STATE` and `LIST-ACTIONS` are
     mandatory.
     
-    `RECORD-BEST`, if non-`NIL`, is a function of (`DEPTH` `SCORE` `ACTIONS`). It
-    is called when at `DEPTH` a new best action is found. `ACTIONS` is a
-    list of all the actions in the principle variant corresonding to the
-    newly found best score. `RECORD-BEST` is useful for graceful
+    `RECORD-BEST`, if non-`NIL`, is a function of `(DEPTH SCORE ACTIONS)`.
+    It is called when at `DEPTH` a new best action is found. `ACTIONS` is
+    a list of all the actions in the principle variant corresonding to
+    the newly found best score. `RECORD-BEST` is useful for graceful
     degradation in case of timeout.
     
     `ALPHA` and `BETA` are typically `NIL` (equivalent to -infinity,
